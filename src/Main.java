@@ -1,5 +1,5 @@
-
 import Users.Crear_Usuario;
+import Login.Login;
 import Users.EditarU;
 import java.awt.event.*;
 import javax.swing.*;
@@ -23,7 +23,7 @@ public class Main extends JFrame{
         crearU = new JMenuItem("Crear");
         modificarU = new JMenuItem("Modificar");
         verU = new JMenuItem("Visualizar/Eliminar");
-        
+
         vehiculo = new JMenu("Vehiculos");
         ingresarVe = new JMenuItem("Ingresar");
         salidaVe = new JMenuItem("Salida");
@@ -54,20 +54,28 @@ public class Main extends JFrame{
         vehiculo.add(modificarRe);
         vehiculo.add(buscarF);
         vehiculo.add(valorHora);
-        
         crearU.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 new Crear_Usuario(null, true);
             }
         });
         
         modificarU.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 new EditarU(null, true);
             }
         });
+
+        login1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {new Login(null, true);
+            }
+        });
         
         setSize(360,300);
+        setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
