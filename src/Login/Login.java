@@ -54,5 +54,6 @@ public class Login extends JDialog {
 
     public static void main(String[] args) {
         new Login(null, true);
+        // HOLA MUNDO
     }
 }
