@@ -1,6 +1,7 @@
 import Users.Crear_Usuario;
 import Login.Login;
 import Users.EditarU;
+import Vehicles.hourValue;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -54,6 +55,7 @@ public class Main extends JFrame{
         vehiculo.add(modificarRe);
         vehiculo.add(buscarF);
         vehiculo.add(valorHora);
+        
         crearU.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -70,7 +72,15 @@ public class Main extends JFrame{
 
         login1.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {new Login(null, true);
+            public void actionPerformed(ActionEvent e) {
+                new Login(null, true);
+            }
+        });
+        
+        valorHora.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new hourValue(null, true);
             }
         });
         
