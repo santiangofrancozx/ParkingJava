@@ -12,7 +12,7 @@ public class Login extends JDialog {
     public Login(Frame papa, Boolean modal){
         super(papa, modal);
         setTitle("Logeo");
-// SAPO HPTA
+//SAPO HPTA
         contraseña = new JLabel("Contraseña");
         contraseña.setBounds(30, 80, 100, 30);
 
@@ -54,6 +54,6 @@ public class Login extends JDialog {
 
     public static void main(String[] args) {
         new Login(null, true);
-        // HOLA MUNDO
+        //HOLA MUNDO
     }
 }
