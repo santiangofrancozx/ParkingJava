@@ -2,64 +2,75 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Users;
+package Vista.Users;
 
 import java.awt.*;
 import javax.swing.*;
 
-
-public class Crear_Usuario extends JDialog{
-    JLabel name, correo, password, nivel;
-    JTextField caja_name, caja_correo, caja_password, caja_nivel;
-    JButton jbCrear, jbCancelar;
+public class EditarU extends JDialog{
+    JLabel name, correo, password, nivel, codigoB;
+    JTextField caja_name, caja_correo, caja_password, caja_nivel, caja_codigoB;
+    JButton jbModificar, jbCancelar, jbBuscar;
     JComboBox combo;
     
-    
-    public Crear_Usuario(Frame e, boolean modal){
-        super(e, modal);
-        setTitle("Crear Usuario");
+    public EditarU(Frame e, boolean modal){
+        //super(e, modal);
+        setTitle("Modificar Usuario");
         setLayout(null);
         
+        codigoB = new JLabel("Codigo");
+        codigoB.setBounds(30, 16, 100, 20);
+        add(codigoB);
+        
+        caja_codigoB = new JTextField();
+        caja_codigoB.setBounds(110, 17, 60, 18);
+        add(caja_codigoB);
+        
+        jbBuscar = new JButton("Buscar");
+        jbBuscar.setBounds(180, 15, 80, 20);
+        add(jbBuscar);
+        
+        
         name = new JLabel("Nombre");
-        name.setBounds(40, 10, 100, 20);
+        name.setBounds(30, 46, 100, 20);
         add(name);
         
         caja_name = new JTextField();
-        caja_name.setBounds(130, 12, 130, 18);
+        caja_name.setBounds(110, 46, 130, 18);
         add(caja_name);
         
         correo = new JLabel("Correo");
-        correo.setBounds(40, 40, 100, 20);
+        correo.setBounds(30, 80, 100, 20);
         add(correo);
         
         caja_correo = new JTextField();
-        caja_correo.setBounds(130, 42, 130, 18);
+        caja_correo.setBounds(110, 81, 130, 18);
         add(caja_correo);
         
         password = new JLabel("Contraseña");
-        password.setBounds(40, 70, 100, 20);
+        password.setBounds(30, 112, 100, 20);
         add(password);
         
         caja_password = new JTextField();
-        caja_password.setBounds(130, 72, 130, 18);
+        caja_password.setBounds(110, 113, 130, 18);
         add(caja_password);
         
         nivel = new JLabel("Nivel");
-        nivel.setBounds(40, 115, 100, 20);
+        nivel.setBounds(30, 155, 100, 20);
         add(nivel);
         
         combo = new JComboBox();
         combo.addItem("1");
         combo.addItem("2");
         combo.addItem("3");
-        combo.setRenderer(new CenteredComboBoxRenderer());
+        combo.setRenderer(new EditarU.CenteredComboBoxRenderer());
         caja_nivel = new JTextField();
-        combo.setBounds(130, 117, 50, 18);
+        combo.setBounds(110, 156, 50, 18);
         add(combo); 
         
-        jbCrear = new JButton("Crear");
-        jbCrear.setBounds(70, 200, 67, 20);
-        add(jbCrear);
+        jbModificar = new JButton("Crear");
+        jbModificar.setBounds(60, 200, 67, 20);
+        add(jbModificar);
         
         jbCancelar = new JButton("Cancelar");
         jbCancelar.setBounds(155, 200, 90, 20);
@@ -68,7 +79,7 @@ public class Crear_Usuario extends JDialog{
         setSize(300, 300);
         setLocationRelativeTo(null);
         setVisible(true);
-    }  
+    }
     
     //METODO PARA CENTRAR EL TEXTO INTERNO DEL JCOMBOBOX
     private class CenteredComboBoxRenderer extends DefaultListCellRenderer {
