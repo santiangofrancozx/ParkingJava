@@ -75,4 +75,8 @@ public class IngresoVehiculo extends JDialog {
 
     }
 
+    /*public static void main(String[] args) {
+        new IngresoVehiculo(null, true);
+    }*/
+
 }
