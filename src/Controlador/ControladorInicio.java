@@ -19,7 +19,7 @@ public class ControladorInicio {
     }
     public void inicio(){
         menu.setTitle("Menu Principal");
-        menu.setSize(300,400);
+        menu.setSize(400,250);
         menu.setLocationRelativeTo(null);
         menu.setDefaultCloseOperation(EXIT_ON_CLOSE);
         menu.setVisible(true);
