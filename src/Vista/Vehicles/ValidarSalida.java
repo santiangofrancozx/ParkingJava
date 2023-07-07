@@ -111,9 +111,6 @@ public class ValidarSalida extends JDialog {
         add(cancelar);
 
 
-
-
-
         setLayout(null);
         //setResizable(false);
         setLocationRelativeTo(null);

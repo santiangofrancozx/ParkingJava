@@ -9,10 +9,10 @@ import javax.swing.*;
 
 
 public class Crear_Usuario extends JDialog{
-    JLabel name, correo, password, nivel;
-    JTextField caja_name, caja_correo, caja_password, caja_nivel;
-    JButton jbCrear, jbCancelar;
-    JComboBox combo;
+    public JLabel name, correo, password, nivel;
+    public JTextField caja_name, caja_correo, caja_password, caja_nivel;
+    public JButton jbCrear, jbCancelar;
+    public JComboBox combo;
     
     
     public Crear_Usuario(Frame e, boolean modal){

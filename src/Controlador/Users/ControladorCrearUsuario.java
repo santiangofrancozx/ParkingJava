@@ -5,10 +5,12 @@ import Vista.Users.Crear_Usuario;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ControladorCrearUsuario implements ActionListener {
     Crear_Usuario user;
     Usuario usuario;
+
 
 
     public ControladorCrearUsuario(Usuario usuario, Crear_Usuario user){
@@ -27,5 +29,4 @@ public class ControladorCrearUsuario implements ActionListener {
             System.out.println(usuario.getNivel());
         }
     }
-
 }

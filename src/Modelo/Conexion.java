@@ -11,7 +11,7 @@ public class Conexion {
     Connection connection = null;
     String url = "jdbc:mysql://localhost:3306";
     String user = "root";
-    String password = "";
+    String password = "safraxval";
     
     public Connection connect(){
         try {
