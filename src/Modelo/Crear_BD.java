@@ -17,6 +17,7 @@ public class Crear_BD extends Conexion{
         System.out.println("hello");
         String nombreData = db.getNameBD();
         String userDB = db.getUserDB();
+        System.out.println(db.getUserDB());
         String passw = db.getPasswordDB();
         Connection con = connect();
         
@@ -28,6 +29,14 @@ public class Crear_BD extends Conexion{
             CrearArchivo createFile = new CrearArchivo(nombreData);
             nombresBD.add(nombreData);
             
+            con.setCatalog(nombreData); // Seleccionar la base de datos recién creada
+            String sql2 = "CREATE TABLE Usuarios (codigo INT PRIMARY KEY AUTO_INCREMENT not null, nombre VARCHAR(50), correo VARCHAR(50), password VARCHAR(50), nivel INT)";
+            preparedStatement = con.prepareStatement(sql2);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            
+            System.out.println("Base de datos creada exitosamente");
+            
             con.setCatalog(nombreData);
             String sql1 = "CREATE USER '" + userDB + "'@'localhost' IDENTIFIED BY '" + passw + "'";
             preparedStatement = con.prepareStatement(sql1);
@@ -35,13 +44,7 @@ public class Crear_BD extends Conexion{
             preparedStatement.close();
             
             
-            con.setCatalog(nombreData); // Seleccionar la base de datos recién creada
-            String sql2 = "CREATE TABLE Usuarios (codigo INT PRIMARY KEY AUTO_INCREMENT, nombre VARCHAR(50), correo VARCHAR(50), password VARCHAR(50), nivel INT)";
-            preparedStatement = con.prepareStatement(sql2);
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
             
-            System.out.println("Base de datos creada exitosamente");
             return true;
             
         } catch (SQLException e) {

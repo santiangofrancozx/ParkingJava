@@ -15,7 +15,7 @@ public class ConsultasUsuarios extends Conexion {
         try
         {
             connect();
-            String sql = "INSERT INTO Usuarios VALUES(?, ?, ?, ?)";
+            String sql = "INSERT INTO Usuarios(nombre, correo, password, nivel) VALUES(?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, nombre);
             preparedStatement.setString(2, correo);
