@@ -8,7 +8,12 @@ import java.sql.*;
 
 
 public class Conexion {
+<<<<<<< HEAD
     ObtenerDB obtDB = new ObtenerDB();
+=======
+    ObtenerDB ob = new ObtenerDB();
+    String Data;
+>>>>>>> cf631419bd4d327a7d4ae810b0e285bf4a4ce235
     Connection connection = null;
     String namedata;
     public static Statement statement;
@@ -17,10 +22,17 @@ public class Conexion {
     String password = "";
     
     public Connection connect(){
+<<<<<<< HEAD
         namedata = obtDB.ObtenerDB();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url + "/" +namedata, user, password);
+=======
+        Data = ob.ObtenerDB();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(url + "/" + Data, user, password);
+>>>>>>> cf631419bd4d327a7d4ae810b0e285bf4a4ce235
             System.out.println("Conectado...");
         } catch (ClassNotFoundException | SQLException e) {
             System.err.println(e);
