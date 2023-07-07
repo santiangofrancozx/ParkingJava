@@ -20,6 +20,7 @@ public class ControladorDB implements ActionListener{
         this.vista = vista;
         this.crear = crear;
         this.vista.bGuardar.addActionListener(this);
+        this.vista.bCancelar.addActionListener(this);
     }
     
     @Override
@@ -29,6 +30,15 @@ public class ControladorDB implements ActionListener{
             modelo.setUserDB(vista.caja_UserBD.getText());
             System.out.println("hola");
             System.out.println(modelo.getNameBD());
+            vista.caja_nombreBD.setText("");
+            vista.caja_passBD.setText("");
+            vista.caja_UserBD.setText("");
+            vista.caja_IP.setText("");
+        } 
+        
+        if(e.getSource() == vista.bCancelar){
+            System.out.println("entre en cancelar");
+            vista.setVisible(false);
         }
         
         if(crear.createDB(modelo)){
@@ -37,9 +47,7 @@ public class ControladorDB implements ActionListener{
             System.out.println("No se guardo");
         }
         
-        if(e.getSource() == vista.bCancelar){
-            
-        }
+        
     }
     
 }
