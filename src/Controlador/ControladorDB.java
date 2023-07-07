@@ -26,6 +26,7 @@ public class ControladorDB implements ActionListener{
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == vista.bGuardar){
             modelo.setNameBD(vista.caja_nombreBD.getText());
+            modelo.setUserDB(vista.caja_UserBD.getText());
             System.out.println("hola");
             System.out.println(modelo.getNameBD());
         }

@@ -28,7 +28,7 @@ public class ControladorCrearUsuario implements ActionListener {
             usuario.setContraseña(user.caja_password.getText());
             usuario.setNivel(user.combo.getSelectedIndex()+1);
             ConsultasUsuarios insert = new ConsultasUsuarios();
-            insert.insert(user.caja_name.getText(), user.caja_password.getText(), user.caja_correo.getText(), user.combo.getSelectedIndex()+1);
+            insert.insert(usuario);
             System.out.println(usuario.getNivel());
         }
     }

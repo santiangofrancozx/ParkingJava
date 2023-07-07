@@ -8,16 +8,19 @@ import java.sql.*;
 
 
 public class Conexion {
+    ObtenerDB obtDB = new ObtenerDB();
     Connection connection = null;
+    String namedata;
     public static Statement statement;
     String url = "jdbc:mysql://localhost:3306";
     String user = "root";
-    String password = "safraxval";
+    String password = "";
     
     public Connection connect(){
+        namedata = obtDB.ObtenerDB();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(url, user, password);
+            connection = DriverManager.getConnection(url + "/" +namedata, user, password);
             System.out.println("Conectado...");
         } catch (ClassNotFoundException | SQLException e) {
             System.err.println(e);

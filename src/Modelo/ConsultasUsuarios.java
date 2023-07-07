@@ -5,28 +5,28 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ConsultasUsuarios extends Conexion {
-
+    
     public ConsultasUsuarios(){
 
     }
 
-    public void insert(String nombre, String contraseña, String correo, int nivel){
-
+    public void insert(Usuario usu){
+        
         try
         {
             connect();
             String sql = "INSERT INTO Usuarios(nombre, correo, password, nivel) VALUES(?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, nombre);
-            preparedStatement.setString(2, correo);
-            preparedStatement.setString(3, password);
-            preparedStatement.setInt(4, nivel);
+            preparedStatement.setString(1, usu.getNombre());
+            preparedStatement.setString(2, usu.getCorreo());
+            preparedStatement.setString(3, usu.getContraseña());
+            preparedStatement.setInt(4, usu.getNivel());
             preparedStatement.executeUpdate();
             JOptionPane.showMessageDialog(null, "Se agrego el cliente:\n" +
-                    "Nombre: " + nombre + "\n"+
-                    "Correo: " + correo + "\n"+
-                    "Password " + password + "\n"+
-                    "Nivel: " + nivel + "\n");
+                    "Nombre: " + usu.getNombre() + "\n"+
+                    "Correo: " + usu.getCorreo() + "\n"+
+                    "Password " + usu.getContraseña() + "\n"+
+                    "Nivel: " + usu.getNivel() + "\n");
             preparedStatement.close();
         } catch (SQLException e) {
 
@@ -34,6 +34,8 @@ public class ConsultasUsuarios extends Conexion {
         } finally {
             disconnect();
         }
+        
+        
 
     }
 
