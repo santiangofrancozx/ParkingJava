@@ -9,6 +9,7 @@ import java.sql.*;
 
 public class Conexion {
     Connection connection = null;
+    public static Statement statement;
     String url = "jdbc:mysql://localhost:3306";
     String user = "root";
     String password = "safraxval";
@@ -22,5 +23,24 @@ public class Conexion {
             System.err.println(e);
         }
         return connection;
+    }
+    
+    public void disconnect(){
+        try {
+            if(statement != null)
+            {
+                statement.close();
+            }
+
+            if(connection != null)
+            {
+                connection.close();
+            }
+
+            System.out.println("Desconectando...");
+
+        } catch (SQLException e) {
+            System.out.println("Error desconexion en base de datos..." + e.getMessage());
+        }
     }
 }
