@@ -14,7 +14,7 @@ public class Conexion {
     ObtenerDB obtDB = new ObtenerDB();
     Connection connection = null;
     String namedata = obtDB.ObtenerDB();
-    String url = "jdbc:mysql://localhost:3306/";
+    String url = "jdbc:mysql://localhost:3306";
     String rutaArchivo = "nameDB.txt";
 
     public static Statement statement;
@@ -31,7 +31,7 @@ public class Conexion {
                 namedata = nombreBD;
             }
 
-            connection = DriverManager.getConnection(url + namedata, user, password);
+            connection = DriverManager.getConnection(url + "/" +namedata, user, password);
             System.out.println("Conectado...");
         } catch (ClassNotFoundException | SQLException e) {
             System.err.println(e);

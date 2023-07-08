@@ -6,10 +6,10 @@ import java.awt.*;
 public class Eliminar extends JDialog {
 
     JLabel LabelUsuarios, LabelCodigo;
-    JButton bbuscar, beliminarSeleccionados, bcancelar;
-    JTextField textCodigo;
-    JTable tablaUsuarios;
-    JComboBox<String> nivelesUsuarios;
+    public JButton bbuscar, beliminarSeleccionados, bcancelar;
+    public JTextField textCodigo;
+    public JTable tablaUsuarios;
+    public JComboBox<String> nivelesUsuarios;
 
 
 
@@ -55,14 +55,19 @@ public class Eliminar extends JDialog {
 
 
 
-        /*setSize(700,370);
+        setSize(700,370);
         setLayout(null);
         setLocationRelativeTo(null);
         setResizable(false);
-        setVisible(true);*/
+        setVisible(true);
 
 
 
+
+    }
+
+    public static void main(String[] args) {
+        new Eliminar(null, true);
     }
 
 }

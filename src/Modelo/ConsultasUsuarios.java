@@ -98,6 +98,12 @@ public class ConsultasUsuarios extends Conexion {
 
         ArrayList<Usuario> results = new ArrayList<>();
         Usuario us = new Usuario();
+        /*String m = "";
+        
+                for(int i = 0; i < results.size(); i++){
+                m += "Correo:"+results.get(i).getCorreo() + "    Contraseña:" + results.get(i).getContraseña() + "\n";
+                }
+                JOptionPane.showMessageDialog(null, m);*/
 
         try
         {

@@ -14,7 +14,7 @@ public class ControladorDB implements ActionListener {
     DataBase modelo;
     Crear_DataBase vista;
     Crear_BD crear;
-    private final String archivoNombreBD = "nombreBD.txt"; // Nombre del archivo para almacenar el nombre de la BD
+    private final String archivoNombreBD = "nameBD.txt"; // Nombre del archivo para almacenar el nombre de la BD
 
     public ControladorDB(DataBase modelo, Crear_DataBase vista, Crear_BD crear) {
         this.modelo = modelo;

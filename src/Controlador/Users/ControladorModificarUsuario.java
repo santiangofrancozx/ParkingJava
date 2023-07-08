@@ -45,7 +45,7 @@ public class ControladorModificarUsuario implements ActionListener {
             us.setNombre(vista.caja_name.getText());
             us.setCorreo(vista.caja_correo.getText());
             us.setContraseña(vista.caja_password.getText());
-            us.setNivel(vista.combo.getSelectedIndex());
+            us.setNivel(vista.combo.getSelectedIndex()+1);
             update.update(us, Integer.parseInt(vista.caja_codigoB.getText()));
         }
 
