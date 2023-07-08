@@ -15,12 +15,15 @@ public class ControladorMenu implements ActionListener{
     Crear_Usuario cu;
     Crear_DataBase crearDB;
     Delete_DB dDB;
+    EditarU editUsu;
     
-    public ControladorMenu(PrincipalMenu menu, Crear_Usuario cu, Crear_DataBase crearDB, Delete_DB dDB){
+    public ControladorMenu(PrincipalMenu menu, Crear_Usuario cu, Crear_DataBase crearDB, Delete_DB dDB, EditarU editUsu){
         this.menu = menu;
+        this.editUsu = editUsu;
         this.cu = cu;
         this.crearDB = crearDB;
         this.dDB = dDB;
+        this.menu.modificarU.addActionListener(this);
         this.menu.crearU.addActionListener(this);
         this.menu.crearBD.addActionListener(this);
         this.menu.eliminarBD.addActionListener(this);
@@ -37,6 +40,10 @@ public class ControladorMenu implements ActionListener{
         if(e.getSource() == menu.eliminarBD){
             dDB.delete();
         }
+        if(e.getSource() == menu.modificarU){
+            inicioEditarU();
+        }
+
     }
     
     public void inicioCU(){
@@ -52,6 +59,12 @@ public class ControladorMenu implements ActionListener{
         crearDB.setLayout(null);
         crearDB.setLocationRelativeTo(null);
         crearDB.setVisible(true);   
+    }
+
+    public void inicioEditarU(){
+        editUsu.setSize(300, 300);
+        editUsu.setLocationRelativeTo(null);
+        editUsu.setVisible(true);
     }
    
             

@@ -55,11 +55,11 @@ public class Eliminar extends JDialog {
 
 
 
-        setSize(700,370);
+        /*setSize(700,370);
         setLayout(null);
         setLocationRelativeTo(null);
         setResizable(false);
-        setVisible(true);
+        setVisible(true);*/
 
 
 

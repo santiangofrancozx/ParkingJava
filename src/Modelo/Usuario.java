@@ -4,6 +4,11 @@ public class Usuario {
 
     String nombre, correo, contraseña;
     int nivel;
+    
+    public Usuario(){
+        
+    }
+    
     public String getNombre() {
         return nombre;
     }

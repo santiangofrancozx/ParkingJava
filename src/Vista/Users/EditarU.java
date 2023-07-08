@@ -8,10 +8,10 @@ import java.awt.*;
 import javax.swing.*;
 
 public class EditarU extends JDialog{
-    JLabel name, correo, password, nivel, codigoB;
-    JTextField caja_name, caja_correo, caja_password, caja_nivel, caja_codigoB;
-    JButton jbModificar, jbCancelar, jbBuscar;
-    JComboBox combo;
+    public JLabel name, correo, password, nivel, codigoB;
+    public JTextField caja_name, caja_correo, caja_password, caja_nivel, caja_codigoB;
+    public JButton jbModificar, jbCancelar, jbBuscar;
+    public JComboBox combo;
     
     public EditarU(Frame e, boolean modal){
         //super(e, modal);
@@ -75,11 +75,9 @@ public class EditarU extends JDialog{
         jbCancelar = new JButton("Cancelar");
         jbCancelar.setBounds(155, 200, 90, 20);
         add(jbCancelar);
-        
-        setSize(300, 300);
-        setLocationRelativeTo(null);
-        setVisible(true);
+       
     }
+
     
     //METODO PARA CENTRAR EL TEXTO INTERNO DEL JCOMBOBOX
     private class CenteredComboBoxRenderer extends DefaultListCellRenderer {

@@ -4,6 +4,7 @@
  */
 package Modelo;
 
+import java.io.*;
 import java.sql.*;
 import Vista.DataBase.*;
 import java.awt.*;
@@ -20,6 +21,10 @@ public class Crear_BD extends Conexion{
         System.out.println(db.getUserDB());
         String passw = db.getPasswordDB();
         Connection con = connect();
+
+        //
+        
+        //
         
         try {
             String sql = "CREATE DATABASE " + nombreData;
@@ -27,6 +32,27 @@ public class Crear_BD extends Conexion{
             preparedStatement.executeUpdate();
             preparedStatement.close();
             CrearArchivo createFile = new CrearArchivo(nombreData);
+            String rutaArchivo = "nameDB.txt";
+        try {
+            // Crea un objeto File con la ruta del archivo
+            File archivo = new File(rutaArchivo);
+
+            // Crea un objeto FileWriter para escribir en el archivo
+            FileWriter escritor = new FileWriter(archivo);
+
+            // Escribe contenido en el archivo
+            escritor.write(db.getNameBD());
+
+            // Cierra el FileWriter
+            escritor.close();
+
+            System.out.println("El archivo se ha creado correctamente.");
+            System.out.println(db.getNameBD());
+        } catch (IOException e) {
+            System.out.println("Ocurrió un error al crear el archivo: " + e.getMessage());
+        }
+
+            
             nombresBD.add(nombreData);
             
             con.setCatalog(nombreData); // Seleccionar la base de datos recién creada
