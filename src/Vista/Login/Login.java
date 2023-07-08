@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 
 public class Login extends JDialog {
     JLabel correo, contraseña;
-    JButton aceptar;
-    JTextField email, password;
+    public JButton aceptar;
+    public JTextField email, password;
     public Login(Frame papa, Boolean modal){
         super(papa, modal);
         setTitle("Logeo");
@@ -42,18 +42,6 @@ public class Login extends JDialog {
         });
 
 
-
-
-        setSize(350,200);
-        setLayout(null);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setVisible(true);
-
     }
 
-    public static void main(String[] args) {
-        new Login(null, true);
-        //HOLA MUNDO
-    }
 }

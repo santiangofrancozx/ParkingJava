@@ -3,10 +3,18 @@ package Modelo;
 public class Usuario {
 
     String nombre, correo, contraseña;
-    int nivel;
+    int nivel, codigo;
     
     public Usuario(){
         
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
     
     public String getNombre() {

@@ -37,7 +37,7 @@ public class ControladorModificarUsuario implements ActionListener {
             vista.caja_name.setText(us.getNombre());
             vista.caja_correo.setText(us.getCorreo());
             vista.caja_password.setText(us.getContraseña());
-            vista.combo.setSelectedIndex(us.getNivel()-1);
+            vista.combo.setSelectedIndex(us.getNivel());
             JOptionPane.showMessageDialog(null, us.getNombre());
         }
         if (e.getSource() == vista.jbModificar){
