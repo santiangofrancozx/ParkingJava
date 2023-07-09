@@ -26,6 +26,7 @@ public class ControladorModificarUsuario implements ActionListener {
         this.usu = usu;
         this.vista.jbBuscar.addActionListener(this);
         this.vista.jbModificar.addActionListener(this);
+        this.vista.jbCancelar.addActionListener(this);
     }
 
     @Override
@@ -47,6 +48,9 @@ public class ControladorModificarUsuario implements ActionListener {
             us.setContraseña(vista.caja_password.getText());
             us.setNivel(vista.combo.getSelectedIndex()+1);
             update.update(us, Integer.parseInt(vista.caja_codigoB.getText()));
+        }
+        if(e.getSource() == vista.jbCancelar){
+            vista.dispose();
         }
 
     }

@@ -18,6 +18,7 @@ public class ControladorCrearUsuario implements ActionListener {
         this.user = user;
         this.usuario = usuario;
         this.user.jbCrear.addActionListener(this);
+        this.user.jbCancelar.addActionListener(this);
     }
 
     @Override
@@ -30,6 +31,9 @@ public class ControladorCrearUsuario implements ActionListener {
             ConsultasUsuarios insert = new ConsultasUsuarios();
             insert.insert(usuario);
             System.out.println(usuario.getNivel());
+        }
+        if(e.getSource() == user.jbCancelar){
+            user.dispose();
         }
     }
 }
