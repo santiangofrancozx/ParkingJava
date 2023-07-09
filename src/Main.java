@@ -12,6 +12,8 @@ import Vista.DataBase.*;
 import Modelo.*;
 import Vista.Users.EditarU;
 import Vista.Users.Eliminar;
+import Vista.Vehicles.*;
+
 
 import java.util.ArrayList;
 
@@ -27,17 +29,21 @@ public class Main{
         EditarU editUgui = new EditarU(null, true);
         ControladorModificarUsuario cmu = new ControladorModificarUsuario(editUgui, us);
         Crear_DataBase crearDB = new Crear_DataBase(null, true);
+        Crear_BD createDB = new Crear_BD();
         Delete_DB dDB = new Delete_DB();
-
+        IngresoVehiculo ingVh = new IngresoVehiculo(null, true);
+        SalidaVehiculo salVh = new SalidaVehiculo(null, true);
         ConsultasUsuarios cosun = new ConsultasUsuarios();
-
+        BuscarRegistros buscRe = new BuscarRegistros(null, true);
         Login log = new Login(null, true);
         ControladorLogeo cLog = new ControladorLogeo(log, menu, us);
+        ModificarRegistros modRe = new ModificarRegistros(null, true);
+        BuscarFactura buscF = new BuscarFactura(null, true);
+        hourValue hourV = new hourValue(null, true);
+        
         ControladorVizualizarEliminar cVe = new ControladorVizualizarEliminar(vistaEliminar, cosun);
-
-        Crear_BD createDB = new Crear_BD();
         ControladorInicio cIni = new ControladorInicio(menu);
-        ControladorMenu cMenu = new ControladorMenu(menu, cu, crearDB, dDB, editUgui, log, vistaEliminar);
+        ControladorMenu cMenu = new ControladorMenu(menu, cu, crearDB, dDB, editUgui, log, vistaEliminar, ingVh, salVh, buscRe, modRe, buscF, hourV);
         ControladorDB cDB = new ControladorDB(modelo, crearDB, createDB);
         cIni.inicio();
     }

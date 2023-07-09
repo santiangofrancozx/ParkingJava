@@ -120,17 +120,8 @@ public class BuscarFactura extends JDialog {
         add(cancelar);
 
 
-        setLayout(null);
-        //setResizable(false);
-        setLocationRelativeTo(null);
-        setSize(320, 450);
-        setVisible(true);
-
 
     }
 
-    /*public static void main(String[] args) {
-        new BuscarFactura(null, true);
-    }*/
 
 }

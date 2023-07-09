@@ -28,19 +28,6 @@ public class SalidaVehiculo extends JDialog {
         add(validar);
         add(cancelar);
 
-
-
-
-        setLayout(null);
-        setSize(320, 200);
-        setLocationRelativeTo(null);
-        //setResizable(true);
-        setVisible(true);
-
-
     }
 
-    /*public static void main(String[] args) {
-        new SalidaVehiculo(null, true);
-    }*/
 }

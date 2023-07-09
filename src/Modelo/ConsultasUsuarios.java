@@ -6,8 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 public class ConsultasUsuarios extends Conexion {
-    
+
     public ConsultasUsuarios(){
 
     }
@@ -27,7 +28,7 @@ public class ConsultasUsuarios extends Conexion {
             JOptionPane.showMessageDialog(null, "Se agrego el usuario:\n" +
                     "Nombre: " + usu.getNombre() + "\n"+
                     "Correo: " + usu.getCorreo() + "\n"+
-                    "Password " + usu.getContraseña() + "\n"+
+                    "Password: " + usu.getContraseña() + "\n"+
                     "Nivel: " + usu.getNivel() + "\n" +
                     "En base de datos: " + nameDb.leerNombreDBMethod("nameDB.txt"));
             preparedStatement.close();
@@ -37,8 +38,8 @@ public class ConsultasUsuarios extends Conexion {
         } finally {
             disconnect();
         }
-        
-        
+
+
 
     }
 
@@ -160,8 +161,23 @@ public class ConsultasUsuarios extends Conexion {
         return results;
     }
 
+    public void DeleteCheck(Usuario usu){
 
+        try {
+            connect();
+            String sql = "DELETE FROM usuarios WHERE codigo = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, usu.getCodigo());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            System.out.println(usu.getCodigo());
 
-
+        } catch (Exception e) {
+        }
+        finally{
+            disconnect();
+        }
+    }
 }
+
 

@@ -29,7 +29,7 @@ public class ControladorLogeo implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == vista.aceptar){
+        if (e.getSource() == vista.aceptar) {
             System.out.println("hoola");
             /*listUsu = cUsu.findAll();
             String m = "";
@@ -37,22 +37,22 @@ public class ControladorLogeo implements ActionListener {
                 m += "Correo:"+listUsu.get(i).getCorreo() + "    Contraseña:" + listUsu.get(i).getContraseña() + "\n";
             }
             JOptionPane.showMessageDialog(null, m);*/
-       
-        if (vista.email.getText().equals("admin") && vista.password.getText().equals("admin")) {
-            menu.bd.setEnabled(true);
-            menu.usuario.setEnabled(true);
-            menu.login.setEnabled(true);
-            menu.vehiculo.setEnabled(true);
-        } else {
-            for (int i = 0; i < listUsu.size(); i++) {
-                if (vista.email.getText().equals(listUsu.get(i).getCorreo()) && vista.password.getText().equals(listUsu.get(i).getContraseña())) {
-                    if (listUsu.get(i).getNivel() == 1) {
-                        System.out.println("encontre el nivel 1");
-                        menu.bd.setEnabled(true);
-                        menu.usuario.setEnabled(true);
-                        
-                    } else if(listUsu.get(i).getNivel() == 2){
-                        System.out.println("encontre el nivel 2");
+
+            if (vista.email.getText().equals("admin") && vista.password.getText().equals("admin")) {
+                menu.bd.setEnabled(true);
+                menu.usuario.setEnabled(true);
+                menu.login.setEnabled(true);
+                menu.vehiculo.setEnabled(true);
+            } else {
+                for (int i = 0; i < listUsu.size(); i++) {
+                    if (vista.email.getText().equals(listUsu.get(i).getCorreo()) && vista.password.getText().equals(listUsu.get(i).getContraseña())) {
+                        if (listUsu.get(i).getNivel() == 1) {
+                            System.out.println("encontre el nivel 1");
+                            menu.bd.setEnabled(true);
+                            menu.usuario.setEnabled(true);
+
+                        } else if (listUsu.get(i).getNivel() == 2) {
+                            System.out.println("encontre el nivel 2");
                             menu.bd.setEnabled(false);
                             menu.usuario.setEnabled(false);
                             menu.ingresarVe.setEnabled(true);
@@ -62,18 +62,13 @@ public class ControladorLogeo implements ActionListener {
                             menu.buscarF.setEnabled(false);
                             menu.valorHora.setEnabled(false);
                             menu.login1.setEnabled(false);
+                        }
                     }
+                    System.out.println(listUsu.get(i).getCorreo());
+                    System.out.println(listUsu.get(i).getContraseña());
                 }
-                System.out.println(listUsu.get(i).getCorreo());
-                System.out.println(listUsu.get(i).getContraseña());
             }
-        }
-            
-        
-
-        vista.dispose();
+            vista.dispose();
         }
     }
-
-
 }

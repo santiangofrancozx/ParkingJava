@@ -8,12 +8,14 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
 
 public class ControladorVizualizarEliminar implements ActionListener {
 
 
     Eliminar vista;
-    public JCheckBox checkBox = new JCheckBox();
     ConsultasUsuarios modelo;
     Usuario us = new Usuario();
     ArrayList<Usuario> uss = new ArrayList<>();
@@ -21,25 +23,18 @@ public class ControladorVizualizarEliminar implements ActionListener {
         this.vista = vista;
         this.modelo = modelo;
         this.vista.bbuscar.addActionListener(this);
+        this.vista.beliminarSeleccionados.addActionListener(this);
+        this.vista.bcancelar.addActionListener(this);
     }
+
 
 
     ///
     public void cleanTable(){
-        Object fila[] = new Object[6];
-        for (int i = 0; i < uss.size(); i++) {
-            fila[0] = "";
-            fila[1] = "";
-            fila[2] = "";
-            fila[3] = "";
-            fila[4] = "";
-            fila[5] = "aqui va check";
-            vista.modelo.addRow(fila);
-        }
+        vista.modelo.setRowCount(0);
     }
 
 
-    ///
 
     public void searchByIndexNivel(){
         vista.modelo.setRowCount(0);
@@ -51,7 +46,7 @@ public class ControladorVizualizarEliminar implements ActionListener {
             filanivel2[2] = uss.get(i).getNombre();
             filanivel2[3] = uss.get(i).getCorreo();
             filanivel2[4] = uss.get(i).getContraseña();
-            filanivel2[5] = "aqui va check";
+            filanivel2[5] = false;
             vista.modelo.addRow(filanivel2);
         }
     }
@@ -85,7 +80,7 @@ public class ControladorVizualizarEliminar implements ActionListener {
                             fila[2] = uss.get(i).getNombre();
                             fila[3] = uss.get(i).getCorreo();
                             fila[4] = uss.get(i).getContraseña();
-                            fila[5] = "aqui va check";
+                            fila[5] = false;
                             vista.modelo.addRow(fila);
                         }
                         break;
@@ -107,18 +102,38 @@ public class ControladorVizualizarEliminar implements ActionListener {
                 vista.modelo.setRowCount(0);
                 Usuario usur= modelo.find(Integer.parseInt(vista.textCodigo.getText()));
                 Object fila[] = new Object[6];
-                    fila[0] = usur.getCodigo();
-                    fila[1] = usur.getNivel();
-                    fila[2] = usur.getNombre();
-                    fila[3] = usur.getCorreo();
-                    fila[4] = usur.getContraseña();
-                    fila[5] = "aqui va check";
-                    vista.modelo.addRow(fila);
-
+                fila[0] = usur.getCodigo();
+                fila[1] = usur.getNivel();
+                fila[2] = usur.getNombre();
+                fila[3] = usur.getCorreo();
+                fila[4] = usur.getContraseña();
+                fila[5] = false;
+                vista.modelo.addRow(fila);
 
             }
 
         }
+        if(e.getSource() == vista.beliminarSeleccionados){
+            eliminarCheckbox();
+            cleanTable();
+        }
+        if(e.getSource() == vista.bcancelar){
+            vista.dispose();
+        }
+    }
+
+    public void eliminarCheckbox(){
+
+        for(int i = 0; i < vista.modelo.getRowCount(); i++){
+            boolean cond = (boolean)vista.modelo.getValueAt(i, 5);
+            if(cond){
+                us.setCodigo((int)vista.modelo.getValueAt(i, 0)) ;
+                modelo.DeleteCheck(us);
+
+            }
+        }
+
+
     }
 
 }

@@ -110,18 +110,6 @@ public class ValidarSalida extends JDialog {
         add(guardar);
         add(cancelar);
 
-
-        setLayout(null);
-        //setResizable(false);
-        setLocationRelativeTo(null);
-        setSize(320, 450);
-        setVisible(true);
-
-
     }
-
-    /*public static void main(String[] args) {
-        new ValidarSalida(null, true);
-    }*/
 
 }

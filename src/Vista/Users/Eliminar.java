@@ -3,6 +3,8 @@ package Vista.Users;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 public class Eliminar extends JDialog {
 
@@ -42,9 +44,6 @@ public class Eliminar extends JDialog {
         textCodigo = new JTextField(20);
         textCodigo.setBounds(350, 30, 200, 30);
 
-        tablaUsuarios = new JTable();
-
-
         nivelesUsuarios = new JComboBox<>(niveles);
         nivelesUsuarios.setBounds(140, 30, 100, 30);
 
@@ -55,7 +54,26 @@ public class Eliminar extends JDialog {
         modelo.addColumn("Correo");
         modelo.addColumn("Contraseña");
         modelo.addColumn("Eliminar");
-        tablaUsuarios = new JTable(modelo);
+
+        tablaUsuarios = new JTable(modelo) {
+            public Class<?> getColumnClass(int column) {
+                if (column == 5) {
+                    return Boolean.class;
+                }
+                return super.getColumnClass(column);
+            }
+
+            public TableCellRenderer getCellRenderer(int row, int column) {
+                if (column == 5) {
+                    return getDefaultRenderer(Boolean.class);
+                }
+                return super.getCellRenderer(row, column);
+            }
+
+            public boolean isCellEditable(int row, int column) {
+                return column == 5;
+            }
+        };
 
         scroll = new JScrollPane(tablaUsuarios, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scroll.setBounds(50, 100, 600, 150);

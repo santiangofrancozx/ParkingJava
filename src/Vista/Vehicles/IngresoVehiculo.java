@@ -63,20 +63,9 @@ public class IngresoVehiculo extends JDialog {
         add(placaFormat);
         add(textPlacaFormat);
 
-
-
-
-        setSize(700,400);
-        setLayout(null);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setVisible(true);
-
-
     }
 
-    /*public static void main(String[] args) {
-        new IngresoVehiculo(null, true);
-    }*/
+
+    
 
 }

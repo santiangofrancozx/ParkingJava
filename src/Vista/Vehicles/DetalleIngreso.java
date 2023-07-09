@@ -68,15 +68,7 @@ public class DetalleIngreso extends JDialog {
 
 
 
-        setSize(350, 300);
-        setLocationRelativeTo(null);
-        setLayout(null);
-        //setResizable(false);
-        setVisible(true);
-
     }
 
-    /*public static void main(String[] args) {
-        new DetalleIngreso(null, true);
-    }*/
+   
 }
