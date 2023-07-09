@@ -60,7 +60,36 @@ public class Crear_BD extends Conexion{
             preparedStatement = con.prepareStatement(sql2);
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            
+
+            //tarifas
+            con.setCatalog(nombreData); // Seleccionar la base de datos recién creada
+            String sql3 = "CREATE TABLE tarifas (tipo char primary key, valor double)";
+            preparedStatement = con.prepareStatement(sql3);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+
+            //ingreso
+            con.setCatalog(nombreData); // Seleccionar la base de datos recién creada
+            String sql4 = "CREATE TABLE ingreso (placa VARCHAR (50) PRIMARY KEY, tipo CHAR, puesto INT, Hora_Entrada INT, Minuto_Entrada INT, codigo INT," +
+                            "FOREIGN KEY (codigo) REFERENCES usuarios(codigo)," +
+                            "FOREIGN KEY (tipo) REFERENCES tarifas(tipo) ON DELETE CASCADE ON UPDATE CASCADE)";
+            preparedStatement = con.prepareStatement(sql4);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+
+            //factura
+            con.setCatalog(nombreData); // Seleccionar la base de datos recién creada
+            String sql5 = "CREATE TABLE factura (codigo_factura INT PRIMARY KEY AUTO_INCREMENT not null, tipo CHAR, placa VARCHAR (50), codigo INT, Hora_Entrada INT, minuto_entrada INT, Hora_Salida INT, minuto_salida INT, horas INT, Valor_Hora INT, Total INT,\n" +
+                    "FOREIGN KEY (tipo) REFERENCES tarifas(tipo) ON DELETE CASCADE ON UPDATE CASCADE," +
+                    "FOREIGN KEY (codigo) REFERENCES usuarios(codigo) ON DELETE CASCADE ON UPDATE CASCADE," +
+                    "FOREIGN KEY (placa)  REFERENCES ingreso(placa) ON DELETE CASCADE ON UPDATE CASCADE)";
+            preparedStatement = con.prepareStatement(sql5);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+
+
+
+
             System.out.println("Base de datos creada exitosamente");
             
             con.setCatalog(nombreData);
