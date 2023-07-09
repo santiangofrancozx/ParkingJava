@@ -38,11 +38,16 @@ public class ControladorLogeo implements ActionListener {
                 menu.login.setEnabled(true);
                 menu.vehiculo.setEnabled(true);
             } else {
-                ArrayList<String[]> usuarios = modelo.findUsuario();
-                for (String[] usuario : usuarios) {
-                    String correo = usuario[0];
-                    int nivel = Integer.parseInt(usuario[1]);
-                    String password = usuario[2];
+                ArrayList<Usuario> usuarios = modelo.findAll();
+                for (int i = 0; i< usuarios.size();i++) {
+                    String correo = usuarios.get(i).getCorreo();
+                    int nivel = usuarios.get(i).getNivel();
+                    String password = usuarios.get(i).getContraseña();
+
+                    System.out.println(usuarios.get(i).getCorreo());
+                    System.out.println(usuarios.get(i).getNivel());
+                    System.out.println(usuarios.get(i).getNivel());
+
                     if (vista.email.getText().equals(correo) && vista.password.getText().equals(password) && nivel == 1) {
                         System.out.println("encontré el nivel 1");
                         menu.bd.setEnabled(true);
@@ -60,6 +65,7 @@ public class ControladorLogeo implements ActionListener {
                         menu.bd.setEnabled(false);
                         menu.usuario.setEnabled(false);
                         menu.ingresarVe.setEnabled(true);
+                        menu.vehiculo.setEnabled(true);
                         menu.salidaVe.setEnabled(true);
                         menu.buscarRe.setEnabled(false);
                         menu.modificarRe.setEnabled(false);
