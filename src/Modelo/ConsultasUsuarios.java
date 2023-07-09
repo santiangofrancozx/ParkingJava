@@ -59,6 +59,7 @@ public class ConsultasUsuarios extends Conexion {
                 usu.setCorreo(resultSet.getString("correo"));
                 usu.setContraseña(resultSet.getString("password"));
                 usu.setNivel(resultSet.getInt("nivel"));
+                usu.setCodigo(resultSet.getInt("codigo"));
             }
             preparedStatement.close();
 
@@ -69,6 +70,41 @@ public class ConsultasUsuarios extends Conexion {
         }
         return usu;
     }
+
+
+    public ArrayList<Usuario> findByNivel(int nivel){
+
+        ArrayList<Usuario> results = new ArrayList<>();
+
+        try
+        {
+            connect();
+            String sql = "SELECT * FROM usuarios WHERE nivel = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, nivel);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+
+            while(resultSet.next()){
+                Usuario us = new Usuario();
+                us.setCodigo(Integer.parseInt(resultSet.getString("codigo")));
+                us.setNombre(resultSet.getString("nombre"));
+                us.setCorreo(resultSet.getString("correo"));
+                us.setContraseña(resultSet.getString("password"));
+                us.setNivel(Integer.parseInt(resultSet.getString("nivel")));
+                results.add(us);
+            }
+            resultSet.close();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al consultar usuarios por nivel: " + e.getMessage(), "Error",JOptionPane.ERROR_MESSAGE);
+        } finally {
+            disconnect();
+        }
+        return results;
+    }
+
+
 
     public void update(Usuario usu, int code){
 
@@ -97,13 +133,6 @@ public class ConsultasUsuarios extends Conexion {
     public ArrayList<Usuario> findAll(){
 
         ArrayList<Usuario> results = new ArrayList<>();
-        Usuario us = new Usuario();
-        /*String m = "";
-        
-                for(int i = 0; i < results.size(); i++){
-                m += "Correo:"+results.get(i).getCorreo() + "    Contraseña:" + results.get(i).getContraseña() + "\n";
-                }
-                JOptionPane.showMessageDialog(null, m);*/
 
         try
         {
@@ -113,6 +142,7 @@ public class ConsultasUsuarios extends Conexion {
             ResultSet resultSet = statement.executeQuery(sql);
 
             while(resultSet.next()){
+                Usuario us = new Usuario();
                 us.setCodigo(Integer.parseInt(resultSet.getString("codigo")));
                 us.setNombre(resultSet.getString("nombre"));
                 us.setCorreo(resultSet.getString("correo"));

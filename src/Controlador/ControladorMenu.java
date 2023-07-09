@@ -9,28 +9,53 @@ import Vista.*;
 import Vista.Login.Login;
 import Vista.Users.*;
 import Vista.DataBase.*;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.event.*;
+import java.awt.Component;
 
 public class ControladorMenu implements ActionListener{
     PrincipalMenu menu;
+    Eliminar eliminVis;
     Crear_Usuario cu;
     Crear_DataBase crearDB;
     Delete_DB dDB;
     EditarU editUsu;
     Login log;
+
+
+    //
+
+    public class CheckboxRenderer extends DefaultTableCellRenderer {
+        private JCheckBox checkBox = new JCheckBox();
+
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            if (value != null && value instanceof Boolean) {
+                checkBox.setSelected((Boolean) value);
+            } else {
+                checkBox.setSelected(false);
+            }
+            return checkBox;
+        }
+    }
+
+    //
     
-    public ControladorMenu(PrincipalMenu menu, Crear_Usuario cu, Crear_DataBase crearDB, Delete_DB dDB, EditarU editUsu, Login log){
+    public ControladorMenu(PrincipalMenu menu, Crear_Usuario cu, Crear_DataBase crearDB, Delete_DB dDB, EditarU editUsu, Login log, Eliminar eliminVis){
         this.menu = menu;
         this.editUsu = editUsu;
         this.cu = cu;
         this.crearDB = crearDB;
         this.dDB = dDB;
         this.log = log;
+        this.eliminVis = eliminVis;
         this.menu.modificarU.addActionListener(this);
         this.menu.crearU.addActionListener(this);
         this.menu.crearBD.addActionListener(this);
         this.menu.eliminarBD.addActionListener(this);
         this.menu.login1.addActionListener(this);
+        this.menu.verU.addActionListener(this);
     }
     
     @Override
@@ -50,6 +75,10 @@ public class ControladorMenu implements ActionListener{
         if(e.getSource() == menu.login1){
             inicioLogin();
         }
+        if (e.getSource() == menu.verU){
+            inicioEliminarVisualizar();
+        }
+
 
     }
     
@@ -81,6 +110,14 @@ public class ControladorMenu implements ActionListener{
         log.setLocationRelativeTo(null);
         log.setResizable(false);
         log.setVisible(true);
+    }
+
+    public void  inicioEliminarVisualizar(){
+        eliminVis.setSize(700,370);
+        eliminVis.setLayout(null);
+        eliminVis.setLocationRelativeTo(null);
+        eliminVis.setResizable(false);
+        eliminVis.setVisible(true);
     }
    
             
