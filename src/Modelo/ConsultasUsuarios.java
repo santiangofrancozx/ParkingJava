@@ -45,30 +45,38 @@ public class ConsultasUsuarios extends Conexion {
 
     //
 
-    public Usuario find(int codigo){
-        Usuario usu =  new Usuario();
-        try
-        {
+    public Usuario find(int codigo) {
+        Usuario usu = new Usuario();
+        boolean usuarioExiste = false; // Variable para indicar si el usuario existe
+
+        try {
             connect();
             String sql = "SELECT * FROM usuarios WHERE codigo = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, codigo);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 usu.setNombre(resultSet.getString("nombre"));
                 usu.setCorreo(resultSet.getString("correo"));
                 usu.setContraseña(resultSet.getString("password"));
                 usu.setNivel(resultSet.getInt("nivel"));
                 usu.setCodigo(resultSet.getInt("codigo"));
+                usuarioExiste = true; // El usuario existe en la base de datos
             }
             preparedStatement.close();
 
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al consultar usuario: " + e.getMessage(), "Error",JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al consultar usuario: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } finally {
             disconnect();
         }
+
+        // Verificar si el usuario existe o no
+        if (!usuarioExiste) {
+            JOptionPane.showMessageDialog(null, "El usuario no existe.", "Usuario no encontrado", JOptionPane.INFORMATION_MESSAGE);
+        }
+
         return usu;
     }
 
@@ -76,6 +84,7 @@ public class ConsultasUsuarios extends Conexion {
     public ArrayList<Usuario> findByNivel(int nivel){
 
         ArrayList<Usuario> results = new ArrayList<>();
+        boolean usuarioExiste = false;
 
         try
         {
@@ -94,6 +103,7 @@ public class ConsultasUsuarios extends Conexion {
                 us.setContraseña(resultSet.getString("password"));
                 us.setNivel(Integer.parseInt(resultSet.getString("nivel")));
                 results.add(us);
+                usuarioExiste = true;
             }
             resultSet.close();
 
@@ -102,6 +112,10 @@ public class ConsultasUsuarios extends Conexion {
         } finally {
             disconnect();
         }
+        if (!usuarioExiste) {
+            JOptionPane.showMessageDialog(null, "El usuario no existe.", "Usuario no encontrado", JOptionPane.INFORMATION_MESSAGE);
+        }
+
         return results;
     }
 
