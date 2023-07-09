@@ -9,10 +9,12 @@ import Vista.DataBase.*;
 
 public class Delete_DB extends Conexion{
     Crear_DataBase vista;
-    DataBase db = null;
+    DataBase db = new DataBase();
+    LeerNombreDB nameDb = new LeerNombreDB();
+
     ObtenerDB obDB = new ObtenerDB();
     public boolean delete(){
-        String nombreData = db.getNameBD();
+        String nombreData = nameDb.leerNombreDBMethod("nameDB.txt");
         Connection con = connect();
         try {
             String sql = "DROP DATABASE " + nombreData;
