@@ -4,9 +4,13 @@ public class Usuario {
 
     String nombre, correo, contraseña;
     int nivel, codigo;
-    
+
     public Usuario(){
-        
+
+    }
+
+    Usuario(String correo, int nivel) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 
@@ -17,7 +21,7 @@ public class Usuario {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-    
+
     public String getNombre() {
         return nombre;
     }
@@ -52,3 +56,4 @@ public class Usuario {
 
 
 }
+

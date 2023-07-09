@@ -36,11 +36,11 @@ public class Main{
         ConsultasUsuarios cosun = new ConsultasUsuarios();
         BuscarRegistros buscRe = new BuscarRegistros(null, true);
         Login log = new Login(null, true);
-        ControladorLogeo cLog = new ControladorLogeo(log, menu, us);
+        ControladorLogeo cLog = new ControladorLogeo(log, menu, us, cosun);
         ModificarRegistros modRe = new ModificarRegistros(null, true);
         BuscarFactura buscF = new BuscarFactura(null, true);
         hourValue hourV = new hourValue(null, true);
-        
+
         ControladorVizualizarEliminar cVe = new ControladorVizualizarEliminar(vistaEliminar, cosun);
         ControladorInicio cIni = new ControladorInicio(menu);
         ControladorMenu cMenu = new ControladorMenu(menu, cu, crearDB, dDB, editUgui, log, vistaEliminar, ingVh, salVh, buscRe, modRe, buscF, hourV);
