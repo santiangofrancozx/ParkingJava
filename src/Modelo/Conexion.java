@@ -13,6 +13,7 @@ import java.io.IOException;
 public class Conexion {
     ObtenerDB obtDB = new ObtenerDB();
     Connection connection = null;
+    LeerNombreDB modelo = new LeerNombreDB();
     String namedata = obtDB.ObtenerDB();
     String url = "jdbc:mysql://localhost:3306";
     String rutaArchivo = "nameDB.txt";
@@ -26,7 +27,7 @@ public class Conexion {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            String nombreBD = leerNombreBD(); // Leer el nombre de la BD desde el archivo
+            String nombreBD = modelo.leerNombreDBMethod("nameDB.txt"); // Leer el nombre de la BD desde el archivo
             if (nombreBD != null && !nombreBD.isEmpty()) {
                 namedata = nombreBD;
             }
@@ -56,12 +57,4 @@ public class Conexion {
         }
     }
 
-    private String leerNombreBD() {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(rutaArchivo))) {
-            return bufferedReader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 }

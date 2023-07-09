@@ -4,6 +4,8 @@
  */
 package Modelo;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.sql.*;
 import Vista.DataBase.*;
 
@@ -22,6 +24,15 @@ public class Delete_DB extends Conexion{
             preparedStatement.executeUpdate();
             preparedStatement.close();
             System.out.println("Base de datos eliminada exitosamente");
+            try {
+                File archivo = new File(rutaArchivo);
+                FileWriter escritor = new FileWriter(archivo);
+                escritor.write("");
+                escritor.close();
+                System.out.println("Se ha borrado el contenido del archivo correctamente.");
+            } catch (Exception e) {
+                System.out.println("Ocurrió un error al borrar el contenido del archivo: " + e.getMessage());
+            }
             return true;
             
         } catch (SQLException e) {

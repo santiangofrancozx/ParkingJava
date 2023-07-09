@@ -56,20 +56,17 @@ public class ControladorDB implements ActionListener {
     }
 
     private void guardarNombreBD(String nombreBD) {
-        try (FileWriter fileWriter = new FileWriter(archivoNombreBD)) {
-            fileWriter.write(nombreBD);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+        File archivo = new File(archivoNombreBD);
 
-    private String leerNombreBD() {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(archivoNombreBD))) {
-            return bufferedReader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (archivo.exists()) {
+            try (FileWriter fileWriter = new FileWriter(archivo, false)) {
+                fileWriter.write(nombreBD);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("El archivo no existe. No se ha escrito nada.");
         }
-        return null;
     }
 }
 
