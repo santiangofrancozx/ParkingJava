@@ -51,11 +51,11 @@ public class ControladorDetallaIngreso implements ActionListener {
         if (e.getSource() == vista.cancelar)
             vista.dispose();
         if(e.getSource() == vista.guardar){
+            System.out.println("detecte guardar");
             if(convertirAInt(vista.nameClient.getText())){
                 obj.setCodigo(Integer.parseInt(vista.nameClient.getText()));
                 obj.setValorHora(modeloT.findTarifa(obj.getTipo()));
                 System.out.println(obj.getValorHora());
-
                 modelo.insert(obj);
                 modelo2.insert(obj);
             }

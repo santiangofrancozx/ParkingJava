@@ -1,9 +1,7 @@
 package Controlador;
 
 
-import Modelo.ConsultasTarifas;
-import Modelo.ObjetoIngreso;
-import Modelo.ObjetoTarifas;
+import Modelo.*;
 import Vista.Vehicles.hourValue;
 
 import java.awt.event.ActionEvent;
@@ -12,6 +10,8 @@ import java.awt.event.ActionListener;
 public class ControladorTarifas implements ActionListener {
     hourValue vista;
     ConsultasTarifas consu = new ConsultasTarifas();
+    ConsultasIngresoVehiculos consuIngreso = new ConsultasIngresoVehiculos();
+    ConsultasFactura fact = new ConsultasFactura();
     ObjetoTarifas modelo = new ObjetoTarifas();
     public ControladorTarifas(hourValue vista){
         this.vista = vista;
@@ -38,18 +38,25 @@ public class ControladorTarifas implements ActionListener {
                 modelo.setTipo("b");
                 modelo.setValor(Double.parseDouble(vista.caja_hBicicleta.getText()));
                 consu.update(modelo);
+                fact.update(modelo, "b");
+                //consuIngreso.update(modelo);
+
             }
 
             if(esConvertibleADouble(vista.caja_hCarro.getText())){
                 modelo.setTipo("c");
                 modelo.setValor(Double.parseDouble(vista.caja_hCarro.getText()));
                 consu.update(modelo);
+                fact.update(modelo, "c");
+                //consuIngreso.update(modelo);
             }
 
             if(esConvertibleADouble(vista.caja_hMoto.getText())){
                 modelo.setTipo("m");
                 modelo.setValor(Double.parseDouble(vista.caja_hMoto.getText()));
                 consu.update(modelo);
+                fact.update(modelo, "m");
+                //consuIngreso.update(modelo);
             }
 
             vista.caja_hMoto.setText("");

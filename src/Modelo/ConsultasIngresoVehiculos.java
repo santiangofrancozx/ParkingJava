@@ -137,4 +137,84 @@ public class ConsultasIngresoVehiculos extends Conexion {
         return results;
     }
 
+    public boolean isPuestoOcupado(int puesto) {
+        boolean ocupado = false;
+        try {
+            connect();
+            String sql = "SELECT COUNT(*) AS total FROM ingreso WHERE puesto = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, puesto);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt("total");
+                ocupado = count > 0;
+            }
+
+            preparedStatement.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al verificar el puesto: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            disconnect();
+        }
+        return ocupado;
+    }
+
+    public ArrayList<ObjetoIngreso> findByPlate (){
+        ArrayList<ObjetoIngreso> results = new ArrayList<>();
+
+        try {
+            connect();
+            String sql = "SELECT placa FROM ingreso";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                ObjetoIngreso ingreso = new ObjetoIngreso();
+
+                ingreso.setPlaca(resultSet.getString("placa"));
+
+                results.add(ingreso);
+            }
+            resultSet.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al consultar las placas: " + e.getMessage(), "Error",JOptionPane.ERROR_MESSAGE);
+        }finally{
+            disconnect();
+        }
+        return results;
+    }
+
+
+
+
+
+
+
+
+
+
+    public void update(ObjetoTarifas obj){
+
+        try
+        {
+            connect();
+            String sql = "UPDATE ingreso SET Valor_Hora = ?  WHERE tipo = ?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setDouble(1, obj.getValor());
+            preparedStatement.setString(2, obj.getTipo());
+            preparedStatement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se actualizo la factura:\n");
+            preparedStatement.close();
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, "Error al actualizar factura " + e.getMessage(), "Error",JOptionPane.ERROR_MESSAGE);
+        } finally {
+            disconnect();
+        }
+
+    }
+
 }

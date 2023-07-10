@@ -40,6 +40,8 @@ public class Main{
         ModificarRegistros modRe = new ModificarRegistros(null, true);
         BuscarFactura buscF = new BuscarFactura(null, true);
         hourValue hourV = new hourValue(null, true);
+        ValidarSalida valSal = new ValidarSalida(null, true);
+
 
         ControladorBuscarFactura bDhc = new ControladorBuscarFactura(buscF);
         ControladorTarifas coTf = new ControladorTarifas(hourV);
@@ -48,6 +50,8 @@ public class Main{
         ControladorMenu cMenu = new ControladorMenu(menu, cu, crearDB, dDB, editUgui, log, vistaEliminar, ingVh, salVh, buscRe, modRe, buscF, hourV);
         ControladorDB cDB = new ControladorDB(modelo, crearDB, createDB);
         ConsultasIngresoVehiculos consulIvh = new ConsultasIngresoVehiculos();
+        ControladorSalidaVehiculos consalVh = new ControladorSalidaVehiculos(salVh, valSal);
+        //ControladorDetallaIngreso conDing = new ControladorDetallaIngreso();
 
 
 

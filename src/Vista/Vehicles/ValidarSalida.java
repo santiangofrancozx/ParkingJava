@@ -5,9 +5,9 @@ import java.awt.*;
 
 public class ValidarSalida extends JDialog {
     JLabel vehiculo, nombreCliente, placa, horaEntrada, minEntrada, horaSalida, minSalida, valorHora, horas, totalPagar;
-    JButton guardar, cancelar;
+    public JButton guardar, cancelar;
 
-    JTextField vehiculoText, nombreClienteText, placaText, horaEntradaText, minEntradaText, horaSalidaText, minSalidaText, valorHoraText, horasText, totalPagarText;
+    public JTextField vehiculoText, nombreClienteText, placaText, horaEntradaText, minEntradaText, horaSalidaText, minSalidaText, valorHoraText, horasText, totalPagarText;
 
     public ValidarSalida(Frame papa, boolean modal){
         super(papa, modal);

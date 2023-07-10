@@ -1,0 +1,128 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Controlador;
+
+import Modelo.*;
+import Vista.Vehicles.BuscarFactura;
+import Vista.Vehicles.DetalleIngreso;
+import Vista.Vehicles.SalidaVehiculo;
+import Vista.Vehicles.ValidarSalida;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+
+
+public class ControladorSalidaVehiculos implements ActionListener{
+    SalidaVehiculo salidave;
+    ObjetoFactura objF = new ObjetoFactura();
+    ValidarSalida valSal;
+    ConsultasUsuarios conUsu = new ConsultasUsuarios();
+    ConsultasIngresoVehiculos conIngreV = new ConsultasIngresoVehiculos();
+    ConsultasFactura consFac = new ConsultasFactura();
+
+    public ControladorSalidaVehiculos(SalidaVehiculo salidave, ValidarSalida valSal){
+        this.salidave = salidave;
+        this.valSal = valSal;
+        this.salidave.validar.addActionListener(this);
+        this.salidave.cancelar.addActionListener(this);
+    }
+    @Override
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource() == salidave.validar){
+            ValidarFormato();
+        }
+        if(e.getSource() == salidave.cancelar){
+            salidave.dispose();
+        }
+    }
+
+    public void ValidarFormato() {
+        System.out.println("entro");
+        String[] bloques = salidave.formatoIngresar.getText().split("-");
+        ObjetoFactura objF = new ObjetoFactura();
+
+        if (bloques.length == 4) {
+            String tVehiculo = bloques[0];
+            String placa = bloques[1];
+            int horaSalida = Integer.parseInt(bloques[2]);
+            int minutosSalida = Integer.parseInt(bloques[3]);
+
+            objF.setHs(horaSalida);
+            objF.setMs(minutosSalida);
+
+            consFac.update2(objF, placa);
+
+            boolean formatoPlaca = false;
+            boolean placaAsignada = false;
+
+            if (tVehiculo.equals("c") || tVehiculo.equals("C")) {
+                for(int i = 0; i < conIngreV.findByPlate().size(); i++){
+                    System.out.println(conIngreV.findByPlate().get(i).getPlaca());
+
+                    if(placa.equals(conIngreV.findByPlate().get(i).getPlaca())){
+                        placaAsignada = true;
+                        break;
+                    }
+                }
+
+                if(placaAsignada){
+                    formatoPlaca = placa.matches("[A-Za-z]{3}\\d{3}");
+
+                }else{
+                    System.out.println("error");
+                }
+
+            } else if (tVehiculo.equals("m") || tVehiculo.equals("M")) {
+                formatoPlaca = placa.matches("[A-Za-z]{3}\\d{2}[A-Za-z]");
+
+
+            } else if (tVehiculo.equals("b") || tVehiculo.equals("B")) {
+                formatoPlaca = placa.equals("0000");
+
+            }
+
+            boolean horaValida = horaSalida >= 0 && horaSalida <= 23;
+            boolean minutosValidos = minutosSalida >= 0 && minutosSalida <= 59;
+
+            if (formatoPlaca && horaValida && minutosValidos) {
+                salidave.dispose();
+                objF = consFac.findByPlate2(placa);
+                System.out.println(conUsu.find(objF.getCodigo()).getNombre());
+                System.out.println(objF.getCodigo());
+                valSal.vehiculoText.setText(objF.getTipo());
+                valSal.nombreClienteText.setText(conUsu.find(objF.getCodigo()).getNombre());
+                valSal.placaText.setText(objF.getPlaca());
+                valSal.horaEntradaText.setText(objF.getHe()+"");
+                valSal.minEntradaText.setText(objF.getMe()+"");
+                valSal.horaSalidaText.setText(objF.getHs()+"");
+                valSal.minSalidaText.setText(objF.getMs()+"");
+                valSal.horaSalidaText.setText(objF.getHs()+"");
+                valSal.minSalidaText.setText(objF.getMs()+"");
+                valSal.horasText.setText(objF.getHoras()+"");
+                valSal.totalPagarText.setText(objF.getTotal()+"");
+                valSal.valorHoraText.setText(objF.getValorHoras()+"");
+
+                DetalleSalida();
+                System.out.println("melo");
+
+
+            } else {
+                JOptionPane.showMessageDialog(null, "formato incorrecto");
+                salidave.formatoIngresar.setText("");
+            }
+        }
+
+
+    }
+
+    public void DetalleSalida(){
+        valSal.setSize(320, 450);
+        valSal.setLayout(null);
+        valSal.setResizable(false);
+        valSal.setLocationRelativeTo(null);
+        valSal.setVisible(true);
+    }
+
+}

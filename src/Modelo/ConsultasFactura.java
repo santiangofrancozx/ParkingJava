@@ -110,4 +110,88 @@ public class ConsultasFactura extends Conexion{
         }
         return ingreso;
     }
+
+    public void update(ObjetoTarifas obj, String tipo){
+
+        try
+        {
+            connect();
+            String sql = "UPDATE factura SET Valor_Hora = ?  WHERE tipo = ?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setDouble(1, obj.getValor());
+            preparedStatement.setString(2, tipo);
+            preparedStatement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se actualizo la factura:\n");
+            preparedStatement.close();
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, "Error al actualizar factura " + e.getMessage(), "Error",JOptionPane.ERROR_MESSAGE);
+        } finally {
+            disconnect();
+        }
+
+    }
+
+    public ObjetoFactura findByPlate2(String placa){
+
+        ObjetoFactura results = new ObjetoFactura();
+
+        try
+        {
+            connect();
+            String sql = "SELECT * FROM factura WHERE placa = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, placa);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+
+            while(resultSet.next()){
+                ObjetoFactura ingreso = new ObjetoFactura();
+
+                ingreso.setCodigo(resultSet.getInt("codigo"));
+                ingreso.setTipo(resultSet.getString("tipo"));
+                ingreso.setPlaca(resultSet.getString("placa"));
+                ingreso.setHe(resultSet.getInt("Hora_Entrada"));
+                ingreso.setMe(resultSet.getInt("minuto_entrada"));
+                System.out.println("error de consulfact");
+                ingreso.setHs(resultSet.getInt("Hora_Salida"));
+                ingreso.setMs(resultSet.getInt("minuto_salida"));
+                ingreso.setValorHoras(resultSet.getDouble("Valor_Hora"));
+                ingreso.setHoras(resultSet.getInt("horas"));
+                ingreso.setTotal(resultSet.getDouble("Total"));
+
+
+                results = ingreso;
+            }
+            resultSet.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al consultar usuarios por tipo: " + e.getMessage(), "Error",JOptionPane.ERROR_MESSAGE);
+        } finally {
+            disconnect();
+        }
+        return results;
+    }
+
+    public void update2(ObjetoFactura obj, String placa){
+
+        try
+        {
+            connect();
+            String sql = "UPDATE factura SET Hora_Salida = ?, minuto_salida = ?  WHERE placa = ?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setDouble(1, obj.getHs());
+            preparedStatement.setDouble(2, obj.getMs());
+            preparedStatement.setString(3, placa);
+            preparedStatement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se actualizo la factura:\n");
+            preparedStatement.close();
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, "Error al actualizar factura " + e.getMessage(), "Error",JOptionPane.ERROR_MESSAGE);
+        } finally {
+            disconnect();
+        }
+
+    }
 }

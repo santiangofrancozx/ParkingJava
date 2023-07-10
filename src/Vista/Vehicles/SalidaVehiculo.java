@@ -6,8 +6,8 @@ import java.awt.*;
 public class SalidaVehiculo extends JDialog {
 
     JLabel format;
-    JTextField formatoIngresar;
-    JButton validar, cancelar;
+    public JTextField formatoIngresar;
+    public JButton validar, cancelar;
 
     public SalidaVehiculo(Frame papa, boolean modal){
         super(papa, modal);
