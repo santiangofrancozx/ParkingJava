@@ -48,6 +48,16 @@ public class ObjetoIngreso {
     int he;
     int me;
 
+    public Double getValorHora() {
+        return valorHora;
+    }
+
+    public void setValorHora(Double valorHora) {
+        this.valorHora = valorHora;
+    }
+
+    Double valorHora;
+
     public int getCodigo() {
         return codigo;
     }

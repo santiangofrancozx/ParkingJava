@@ -17,14 +17,15 @@ public class ConsultasFactura extends Conexion{
         try
         {
             connect();
-            String sql = "INSERT INTO factura(tipo, placa, codigo, Hora_Entrada, Minuto_Entrada) " +
-                    "VALUES(?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO factura(tipo, placa, codigo, Hora_Entrada, Minuto_Entrada, Valor_Hora) " +
+                    "VALUES(?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, usu.getTipo());
             preparedStatement.setString(2, usu.getPlaca());
             preparedStatement.setInt(3, usu.getCodigo());
             preparedStatement.setInt(4, usu.getHe());
             preparedStatement.setInt(5, usu.getMe());
+            preparedStatement.setDouble(6, usu.getValorHora());
             preparedStatement.executeUpdate();
             JOptionPane.showMessageDialog(null, "Se agrego el usuario:\n" +
                     "Placa: " + usu.getPlaca() + "\n"+
