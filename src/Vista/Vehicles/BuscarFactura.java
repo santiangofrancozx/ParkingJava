@@ -5,13 +5,13 @@ import java.awt.*;
 
 public class BuscarFactura extends JDialog {
     JLabel vehiculo, nombreCliente, placa, horaEntrada, minEntrada, horaSalida, minSalida, valorHora, horas, totalPagar, NoFactura;
-    JButton buscar, cancelar;
+    public JButton buscar, cancelar;
 
-    JTextField vehiculoText, nombreClienteText, placaText, horaEntradaText, minEntradaText, horaSalidaText, minSalidaText, valorHoraText, horasText, totalPagarText, NoFacturaText;
+    public JTextField vehiculoText, nombreClienteText, placaText, horaEntradaText, minEntradaText, horaSalidaText, minSalidaText, valorHoraText, horasText, totalPagarText, NoFacturaText;
 
     public BuscarFactura(Frame papa, boolean modal){
         super(papa, modal);
-        setTitle("Validar Salida");
+        setTitle("Buscar factura");
 
         //labels
 
@@ -87,7 +87,7 @@ public class BuscarFactura extends JDialog {
 
         //buttons
 
-        buscar = new JButton("Guardar");
+        buscar = new JButton("Buscar");
         buscar.setBounds(220,20,80,20);
 
         cancelar = new JButton("Cancelar");

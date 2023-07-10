@@ -67,10 +67,16 @@ public class Crear_BD extends Conexion{
             preparedStatement = con.prepareStatement(sql3);
             preparedStatement.executeUpdate();
             preparedStatement.close();
+            //definido por defecto
+            con.setCatalog(nombreData); // Seleccionar la base de datos recién creada
+            String sqlInsert = "INSERT INTO tarifas(tipo, valor) VALUES('b', 0),('c', 0),('m', 0)";
+            preparedStatement = con.prepareStatement(sqlInsert);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
 
             //ingreso
             con.setCatalog(nombreData); // Seleccionar la base de datos recién creada
-            String sql4 = "CREATE TABLE ingreso (placa VARCHAR (50) PRIMARY KEY, tipo CHAR, puesto INT, Hora_Entrada INT, Minuto_Entrada INT, codigo INT," +
+            String sql4 = "CREATE TABLE ingreso (placa VARCHAR (50) PRIMARY KEY, tipo VARCHAR(50), puesto INT, Hora_Entrada INT, Minuto_Entrada INT, codigo INT," +
                             "FOREIGN KEY (codigo) REFERENCES usuarios(codigo)," +
                             "FOREIGN KEY (tipo) REFERENCES tarifas(tipo) ON DELETE CASCADE ON UPDATE CASCADE)";
             preparedStatement = con.prepareStatement(sql4);

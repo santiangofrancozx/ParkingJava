@@ -40,11 +40,20 @@ public class Main{
         ModificarRegistros modRe = new ModificarRegistros(null, true);
         BuscarFactura buscF = new BuscarFactura(null, true);
         hourValue hourV = new hourValue(null, true);
+        BuscarFactura viVhs = new BuscarFactura(null, true);
 
+
+        ControladorBuscarFactura bDhc = new ControladorBuscarFactura(viVhs);
+        ControladorTarifas coTf = new ControladorTarifas(hourV);
         ControladorVizualizarEliminar cVe = new ControladorVizualizarEliminar(vistaEliminar, cosun);
         ControladorInicio cIni = new ControladorInicio(menu);
         ControladorMenu cMenu = new ControladorMenu(menu, cu, crearDB, dDB, editUgui, log, vistaEliminar, ingVh, salVh, buscRe, modRe, buscF, hourV);
         ControladorDB cDB = new ControladorDB(modelo, crearDB, createDB);
+        ConsultasIngresoVehiculos consulIvh = new ConsultasIngresoVehiculos();
+
+
+
+        COntroladorIngresoVehiculo contVh = new COntroladorIngresoVehiculo(ingVh);
         cIni.inicio();
     }
 }

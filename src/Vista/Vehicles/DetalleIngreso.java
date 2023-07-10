@@ -6,8 +6,8 @@ import java.awt.*;
 public class DetalleIngreso extends JDialog {
 
     JLabel vehiculo, placa, horaEntrada, minutoEntrada, nombreCliente;
-    JTextField vehicle, plate, hour, min, nameClient;
-    JButton guardar, cancelar;
+    public JTextField vehicle, plate, hour, min, nameClient;
+    public JButton guardar, cancelar;
 
 
     public DetalleIngreso(Frame papa, boolean modal){

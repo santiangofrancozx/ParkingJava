@@ -10,9 +10,9 @@ import javax.swing.*;
 
 public class hourValue extends JDialog{
 
-    JTextField caja_hCarro, caja_hMoto, caja_hBicicleta;
+    public JTextField caja_hCarro, caja_hMoto, caja_hBicicleta;
     JLabel hCarro, hMoto, hBicicleta;
-    JButton bGuardar, bCancelar;
+    public JButton bGuardar, bCancelar;
 
     public hourValue(Frame e, boolean modal){
         super(e, modal);

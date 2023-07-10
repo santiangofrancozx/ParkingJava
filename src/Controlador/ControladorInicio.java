@@ -16,9 +16,9 @@ public class ControladorInicio {
         this.usu = usu;
     }
     public void inicio(){
-        menu.bd.setEnabled(false);
-        menu.usuario.setEnabled(false);
-        menu.vehiculo.setEnabled(false);
+        //menu.bd.setEnabled(false);
+        //menu.usuario.setEnabled(false);
+        //menu.vehiculo.setEnabled(false);
         menu.setTitle("Menu Principal");
         menu.setSize(400,250);
         menu.setLocationRelativeTo(null);

@@ -20,6 +20,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.event.*;
 import java.awt.Component;
+import java.util.ArrayList;
 
 public class ControladorMenu implements ActionListener{
     PrincipalMenu menu;
@@ -35,6 +36,7 @@ public class ControladorMenu implements ActionListener{
     ModificarRegistros modRe;
     BuscarFactura buscF;
     hourValue hourV;
+
 
 
     //
