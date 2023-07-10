@@ -2,6 +2,7 @@ package Controlador;
 
 import Modelo.ConsultasFactura;
 import Modelo.ConsultasIngresoVehiculos;
+import Modelo.ConsultasTarifas;
 import Modelo.ObjetoIngreso;
 import Vista.Vehicles.DetalleIngreso;
 
@@ -13,6 +14,7 @@ public class ControladorDetallaIngreso implements ActionListener {
     ObjetoIngreso obj = new ObjetoIngreso();
     ConsultasIngresoVehiculos modelo = new ConsultasIngresoVehiculos();
     ConsultasFactura modelo2 = new ConsultasFactura();
+    ConsultasTarifas modeloT = new ConsultasTarifas();
 
     public ControladorDetallaIngreso(DetalleIngreso vista, ObjetoIngreso obj){
         this.obj = obj;
@@ -51,6 +53,9 @@ public class ControladorDetallaIngreso implements ActionListener {
         if(e.getSource() == vista.guardar){
             if(convertirAInt(vista.nameClient.getText())){
                 obj.setCodigo(Integer.parseInt(vista.nameClient.getText()));
+                obj.setValorHora(modeloT.findTarifa(obj.getTipo()));
+                System.out.println(obj.getValorHora());
+
                 modelo.insert(obj);
                 modelo2.insert(obj);
             }

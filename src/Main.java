@@ -40,10 +40,10 @@ public class Main{
         ModificarRegistros modRe = new ModificarRegistros(null, true);
         BuscarFactura buscF = new BuscarFactura(null, true);
         hourValue hourV = new hourValue(null, true);
-        BuscarFactura viVhs = new BuscarFactura(null, true);
 
 
-        ControladorBuscarFactura bDhc = new ControladorBuscarFactura(viVhs);
+
+        ControladorBuscarFactura bDhc = new ControladorBuscarFactura(buscF);
         ControladorTarifas coTf = new ControladorTarifas(hourV);
         ControladorVizualizarEliminar cVe = new ControladorVizualizarEliminar(vistaEliminar, cosun);
         ControladorInicio cIni = new ControladorInicio(menu);
