@@ -91,12 +91,13 @@ public class ConsultasFactura extends Conexion{
                 ingreso.setPlaca(resultSet.getString("placa"));
                 ingreso.setTipo(resultSet.getString("tipo"));
                 ingreso.setHe(resultSet.getInt("Hora_Entrada"));
-                ingreso.setMe(resultSet.getInt("inuto_entrada"));
+                ingreso.setMe(resultSet.getInt("minuto_entrada"));
                 ingreso.setCodigo(resultSet.getInt("codigo"));
                 ingreso.setCodigio_factura(resultSet.getInt("codigo_factura"));
-                ingreso.setHe(resultSet.getInt("Hora_Salida"));
-                ingreso.setMe(resultSet.getInt("minuto_salida"));
+                ingreso.setHs(resultSet.getInt("Hora_Salida"));
+                ingreso.setMs(resultSet.getInt("minuto_salida"));
                 ingreso.setHoras(resultSet.getInt("horas"));
+                ingreso.setValorHoras(resultSet.getDouble("Valor_Hora"));
                 ingreso.setTotal(resultSet.getDouble("Total"));
             }
             resultSet.close();

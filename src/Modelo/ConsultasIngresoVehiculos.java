@@ -108,5 +108,33 @@ public class ConsultasIngresoVehiculos extends Conexion {
         }
         return results;
     }
+    
+    public ArrayList<ObjetoIngreso> findByPos(){
+        ArrayList<ObjetoIngreso> results = new ArrayList<>();
+        
+        try {
+            connect();
+            String sql = "SELECT puesto FROM ingreso";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
+            while(resultSet.next()){
+                ObjetoIngreso ingreso = new ObjetoIngreso();
+                
+                ingreso.setPuesto(resultSet.getInt("puesto"));
+                
+                results.add(ingreso);
+            }
+            resultSet.close();
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al consultar los puestos: " + e.getMessage(), "Error",JOptionPane.ERROR_MESSAGE);
+        }
+        finally{
+            disconnect();
+        }
+        return results;
+    }
 
 }

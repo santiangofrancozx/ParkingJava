@@ -30,7 +30,7 @@ public class ControladorBuscarFactura implements ActionListener {
             vista.dispose();
         }
 
-        /*if(e.getSource() == vista.buscar){
+        if(e.getSource() == vista.buscar){
             System.out.println("entre en buscar");
             int codeFactura;
             if (esConvertibleADouble(vista.NoFacturaText.getText())){
@@ -48,7 +48,7 @@ public class ControladorBuscarFactura implements ActionListener {
                 vista.horasText.setText(objFac.getHoras()+"");
                 vista.totalPagarText.setText(objFac.getTotal()+"");
             }
-        }*/
+        }
     }
 
     public boolean esConvertibleADouble(String valor) {

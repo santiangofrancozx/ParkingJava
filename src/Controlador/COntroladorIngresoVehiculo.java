@@ -11,33 +11,34 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class COntroladorIngresoVehiculo implements ActionListener {
+
     IngresoVehiculo vista;
     ObjetoIngreso vehiculo = new ObjetoIngreso();
+    ConsultasIngresoVehiculos conIngreV = new ConsultasIngresoVehiculos();
     public String[] carros2 = {" 1", "  2", "  3", "  4", "  5", "  6", "  7", "  8", "  9", "10"};
     public String[] motos2 = {"11", "12", "13", "14", "15", "16", "17", "18", "19", "20"};
     public String[] bicicletas2 = {"21", "22", "23", "24", "25"};
+    
 
-
-    public String updateMM(){
+    public String updateMM() {
 
         String M = "";
-        for(int i = 0; i < carros2.length; i++){
+        for (int i = 0; i < carros2.length; i++) {
             M += carros2[i] + "    ";
         }
         M += "\n\n";
-        for(int i = 0; i < motos2.length; i++){
+        for (int i = 0; i < motos2.length; i++) {
             M += motos2[i] + "    ";
         }
         M += "\n\n";
-        for(int i = 0; i < bicicletas2.length; i++){
+        for (int i = 0; i < bicicletas2.length; i++) {
             M += bicicletas2[i] + "    ";
         }
         return M;
+        
     }
 
-
-
-    public COntroladorIngresoVehiculo(IngresoVehiculo vista){
+    public COntroladorIngresoVehiculo(IngresoVehiculo vista) {
 
         this.vista = vista;
         this.vista.bValidar.addActionListener(this);
@@ -64,25 +65,44 @@ public class COntroladorIngresoVehiculo implements ActionListener {
             obj.setPuesto(Integer.parseInt(puesto));
 
             boolean formatoPlaca = false;
+            boolean puestoAsignado = false;
+            
             if (tVehiculo.equals("c") || tVehiculo.equals("C")) {
-                if(Integer.parseInt(puesto) > 0 && Integer.parseInt(puesto) <= 10){
-                    formatoPlaca = placa.matches("[A-Za-z]{3}\\d{3}");
+                if (Integer.parseInt(puesto) > 0 && Integer.parseInt(puesto) <= 10) {
+                    for (int i = 0; i < conIngreV.findByPos().size(); i++) {
+                        System.out.println(conIngreV.findByPos().get(i).getPuesto());
+                        if (Integer.parseInt(puesto) == conIngreV.findByPos().get(i).getPuesto()) {
+                            puestoAsignado = true;
+                            
+                        } 
+                    }
+                    if(!puestoAsignado){
+                        
+                        formatoPlaca = placa.matches("[A-Za-z]{3}\\d{3}");
+                        DetalleIngreso vistaIngreso = new DetalleIngreso(null, true);
+                        
+                        ControladorDetallaIngreso cdIng = new ControladorDetallaIngreso(vistaIngreso, obj);
+                        
+                    }else{
+                        
+                        System.out.println("error");
+                    }
+
                 }
 
-            } else if (tVehiculo.equals("m")|| tVehiculo.equals("M")) {
-                if(Integer.parseInt(puesto) > 10 && Integer.parseInt(puesto) <= 20){
+            } else if (tVehiculo.equals("m") || tVehiculo.equals("M")) {
+                if (Integer.parseInt(puesto) > 10 && Integer.parseInt(puesto) <= 20) {
                     formatoPlaca = placa.matches("[A-Za-z]{3}\\d{2}[A-Za-z]");
                 }
 
             } else if (tVehiculo.equals("b") || tVehiculo.equals("B")) {
-                if(Integer.parseInt(puesto) > 20 && Integer.parseInt(puesto) <= 25){
+                if (Integer.parseInt(puesto) > 20 && Integer.parseInt(puesto) <= 25) {
                     formatoPlaca = placa.equals("0000");
                 }
             }
 
             boolean horaValida = horaEntrada >= 0 && horaEntrada <= 23;
             boolean minutosValidos = minutosEntrada >= 0 && minutosEntrada <= 59;
-
 
             if (formatoPlaca && horaValida && minutosValidos) {
                 vista.dispose();
@@ -135,9 +155,9 @@ public class COntroladorIngresoVehiculo implements ActionListener {
             vista.setVisible(true);
         }
 
-        if(e.getSource() == vista.bMostrar){
+        if (e.getSource() == vista.bMostrar) {
             //motos
-            if(vista.nivelesUsuarios.getSelectedIndex() == 0){
+            if (vista.nivelesUsuarios.getSelectedIndex() == 0) {
                 System.out.println(updateMM());
                 System.out.println("detecte mostrar nivel m");
                 ConsultasIngresoVehiculos consul = new ConsultasIngresoVehiculos();
@@ -158,7 +178,7 @@ public class COntroladorIngresoVehiculo implements ActionListener {
                     }
                 }
                 //carros
-            } else if(vista.nivelesUsuarios.getSelectedIndex() == 1){
+            } else if (vista.nivelesUsuarios.getSelectedIndex() == 1) {
                 System.out.println(updateMM());
                 System.out.println("detecte mostrar nivel c");
                 ConsultasIngresoVehiculos consul = new ConsultasIngresoVehiculos();
@@ -178,7 +198,7 @@ public class COntroladorIngresoVehiculo implements ActionListener {
                     }
                 }
                 //bicicletas
-            } else if(vista.nivelesUsuarios.getSelectedIndex() == 2){
+            } else if (vista.nivelesUsuarios.getSelectedIndex() == 2) {
                 System.out.println(updateMM());
                 System.out.println("detecte mostrar nivel b");
                 ConsultasIngresoVehiculos consul = new ConsultasIngresoVehiculos();
@@ -201,15 +221,13 @@ public class COntroladorIngresoVehiculo implements ActionListener {
             vista.setVisible(true);
         }
 
-        if(e.getSource() == vista.bCancelar){
+        if (e.getSource() == vista.bCancelar) {
             vista.dispose();
         }
 
         if (e.getSource() == vista.bValidar) {
             ObjetoIngreso obj = ValidarFormato();
-            DetalleIngreso vistaIngreso = new DetalleIngreso(null, true);
-            ControladorDetallaIngreso cdIng = new ControladorDetallaIngreso(vistaIngreso, obj);
-
+            
 
         }
 
