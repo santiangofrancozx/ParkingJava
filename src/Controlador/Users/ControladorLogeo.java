@@ -37,6 +37,11 @@ public class ControladorLogeo implements ActionListener {
                 menu.usuario.setEnabled(true);
                 menu.login.setEnabled(true);
                 menu.vehiculo.setEnabled(true);
+                menu.vehiculo.setEnabled(true);
+                menu.buscarRe.setEnabled(true);
+                menu.modificarRe.setEnabled(true);
+                menu.buscarF.setEnabled(true);
+                menu.valorHora.setEnabled(true);
             } else {
                 ArrayList<Usuario> usuarios = modelo.findAll();
                 for (int i = 0; i< usuarios.size();i++) {
