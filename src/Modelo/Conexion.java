@@ -21,7 +21,7 @@ public class Conexion {
     public static Statement statement;
 
     String user = "root";
-    String password = "safraxval";
+    String password = "";
 
     public Connection connect() {
         try {
