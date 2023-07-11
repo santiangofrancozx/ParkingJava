@@ -94,7 +94,7 @@ public class ControladorLogeo implements ActionListener {
                         menu.salidaVe.setEnabled(false);
                         menu.buscarRe.setEnabled(false);
                         menu.modificarRe.setEnabled(false);
-                        menu.buscarF.setEnabled(false);
+                        menu.buscarF.setEnabled(true);
                         menu.valorHora.setEnabled(false);
                         vista.email.setText("");
                         vista.password.setText("");
