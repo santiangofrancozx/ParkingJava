@@ -26,7 +26,7 @@ public class DetalleIngreso extends JDialog {
         minutoEntrada = new JLabel("Minuto entrada");
         minutoEntrada.setBounds(20, 120, 100, 20);
 
-        nombreCliente = new JLabel("Nombre Cliente");
+        nombreCliente = new JLabel("Codigo Cliente");
         nombreCliente.setBounds(20, 150, 100, 20);
 
         //text fields
