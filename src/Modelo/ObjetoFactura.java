@@ -121,7 +121,6 @@ public class ObjetoFactura {
 
     String tipo, placa;
 
-
     public ObjetoFactura(){
 
     }

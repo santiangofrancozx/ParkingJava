@@ -116,6 +116,7 @@ public class ControladorVizualizarEliminar implements ActionListener {
         if(e.getSource() == vista.beliminarSeleccionados){
             eliminarCheckbox();
             cleanTable();
+            
         }
         if(e.getSource() == vista.bcancelar){
             vista.dispose();

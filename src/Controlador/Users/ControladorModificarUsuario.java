@@ -62,6 +62,7 @@ public class ControladorModificarUsuario implements ActionListener {
             us.setContraseña(vista.caja_password.getText());
             us.setNivel(vista.combo.getSelectedIndex()+1);
             update.update(us, Integer.parseInt(vista.caja_codigoB.getText()));
+            vista.dispose();
         }
         if(e.getSource() == vista.jbCancelar){
             vista.dispose();

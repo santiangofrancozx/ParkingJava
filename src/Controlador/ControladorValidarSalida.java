@@ -41,9 +41,10 @@ public class ControladorValidarSalida implements ActionListener {
             obj.setValorHoras(Double.parseDouble(vista.valorHoraText.getText()));
             vista.totalPagarText.getText().split(":");
             String[] tarifasString = vista.totalPagarText.getText().split(":");
-            int horas = Integer.parseInt(tarifasString[0]);
-            obj.setHoras(horas);
+            //int horas = Integer.parseInt(tarifasString[0]);
+            //obj.setHoras(horas);
             obj.setTotal(Double.parseDouble(vista.horasText.getText()));
+            System.out.println("total a enviar a db: " + vista.horasText.getText());
             modelo.updateByPlaca(obj, obj.getPlaca());
             consuIng.deleteByPlate(obj.getPlaca());
 

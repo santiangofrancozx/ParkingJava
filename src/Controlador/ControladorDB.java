@@ -41,6 +41,7 @@ public class ControladorDB implements ActionListener {
             vista.caja_IP.setText("");
 
             guardarNombreBD(modelo.getNameBD()); // Guardar el nombre de la BD en el archivo
+            vista.dispose();
         }
 
         if (e.getSource() == vista.bCancelar) {

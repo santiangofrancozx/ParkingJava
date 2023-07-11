@@ -258,4 +258,32 @@ public class ConsultasFactura extends Conexion{
         }
 
     }
+    
+    public void update3(ObjetoFactura obj, int code) {
+    try {
+        connect();
+        String sql = "UPDATE factura SET Tipo = ?, placa = ?, Hora_Entrada = ?, Hora_Salida = ?, minuto_entrada = ?, minuto_salida = ?, horas = ?, Total = ? WHERE codigo_factura = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, obj.getTipo());
+        preparedStatement.setString(2, obj.getPlaca());
+        preparedStatement.setDouble(3, obj.getHe());
+        preparedStatement.setDouble(4, obj.getHs());
+        
+        preparedStatement.setInt(5, obj.getMe());
+        preparedStatement.setInt(6, obj.getMs());
+        preparedStatement.setInt(7, obj.getHoras());
+        preparedStatement.setDouble(8, obj.getTotal());
+        
+                
+        preparedStatement.setInt(9, code);
+        preparedStatement.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Se actualizó la factura.");
+        preparedStatement.close();
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al actualizar factura: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    } finally {
+        disconnect();
+    }
+}
+
 }

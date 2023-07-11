@@ -85,7 +85,7 @@ public class Crear_BD extends Conexion{
 
             //factura
             con.setCatalog(nombreData); // Seleccionar la base de datos recién creada
-            String sql5 = "CREATE TABLE factura (codigo_factura INT PRIMARY KEY AUTO_INCREMENT not null, tipo VARCHAR(50), placa VARCHAR (50), codigo INT, Hora_Entrada INT, minuto_entrada INT, Hora_Salida INT, minuto_salida INT, horas INT, Valor_Hora INT, Total INT, puesto INT,\n" +
+            String sql5 = "CREATE TABLE factura (codigo_factura INT PRIMARY KEY AUTO_INCREMENT not null, tipo VARCHAR(50), placa VARCHAR (50), codigo INT, Hora_Entrada INT, minuto_entrada INT, Hora_Salida INT, minuto_salida INT, horas DOUBLE, Valor_Hora INT, Total DOUBLE, puesto INT,\n" +
                     "FOREIGN KEY (tipo) REFERENCES tarifas(tipo) ON DELETE CASCADE ON UPDATE CASCADE," +
                     "FOREIGN KEY (codigo) REFERENCES usuarios(codigo) ON DELETE CASCADE ON UPDATE CASCADE," +
                     "FOREIGN KEY (puesto)  REFERENCES ingreso(puesto) ON DELETE CASCADE ON UPDATE CASCADE)";

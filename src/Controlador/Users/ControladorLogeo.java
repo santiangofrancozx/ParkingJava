@@ -42,6 +42,8 @@ public class ControladorLogeo implements ActionListener {
                 menu.modificarRe.setEnabled(true);
                 menu.buscarF.setEnabled(true);
                 menu.valorHora.setEnabled(true);
+                vista.email.setText("");
+                vista.password.setText("");
             } else {
                 ArrayList<Usuario> usuarios = modelo.findAll();
                 for (int i = 0; i< usuarios.size();i++) {
@@ -63,7 +65,10 @@ public class ControladorLogeo implements ActionListener {
                         menu.modificarRe.setEnabled(true);
                         menu.buscarF.setEnabled(true);
                         menu.valorHora.setEnabled(true);
-                        break; // Opcional: salir del bucle si se encuentra el usuario con nivel 1
+                        vista.email.setText("");
+                        vista.password.setText("");
+                        break;
+                        // Opcional: salir del bucle si se encuentra el usuario con nivel 1
 
                     } else if (vista.email.getText().equals(correo) && vista.password.getText().equals(password) && nivel == 2) {
                         System.out.println("encontre el nivel 2");
@@ -76,6 +81,23 @@ public class ControladorLogeo implements ActionListener {
                         menu.modificarRe.setEnabled(false);
                         menu.buscarF.setEnabled(false);
                         menu.valorHora.setEnabled(false);
+                        vista.email.setText("");
+                        vista.password.setText("");
+                        //menu.login1.setEnabled(false);
+
+                    } else if (vista.email.getText().equals(correo) && vista.password.getText().equals(password) && nivel == 3) {
+                        System.out.println("encontre el nivel 3");
+                        menu.bd.setEnabled(false);
+                        menu.usuario.setEnabled(false);
+                        menu.ingresarVe.setEnabled(true);
+                        menu.vehiculo.setEnabled(true);
+                        menu.salidaVe.setEnabled(false);
+                        menu.buscarRe.setEnabled(false);
+                        menu.modificarRe.setEnabled(false);
+                        menu.buscarF.setEnabled(false);
+                        menu.valorHora.setEnabled(false);
+                        vista.email.setText("");
+                        vista.password.setText("");
                         //menu.login1.setEnabled(false);
 
                     }

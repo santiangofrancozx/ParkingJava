@@ -11,6 +11,7 @@ import Vista.Vehicles.SalidaVehiculo;
 import Vista.Vehicles.ValidarSalida;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 
 public class ControladorSalidaVehiculos implements ActionListener {
@@ -21,6 +22,7 @@ public class ControladorSalidaVehiculos implements ActionListener {
     ConsultasUsuarios conUsu = new ConsultasUsuarios();
     ConsultasIngresoVehiculos conIngreV = new ConsultasIngresoVehiculos();
     ConsultasFactura consFac = new ConsultasFactura();
+    double rep;
 
     public ControladorSalidaVehiculos(SalidaVehiculo salidave, ValidarSalida valSal) {
         this.salidave = salidave;
@@ -41,7 +43,7 @@ public class ControladorSalidaVehiculos implements ActionListener {
 
     public void ValidarFormato() {
         int totalHoras, totalMinu;
-
+        String jsf = "";
         System.out.println("entro");
         String[] bloques = salidave.formatoIngresar.getText().split("-");
         ObjetoFactura objF = new ObjetoFactura();
@@ -59,14 +61,44 @@ public class ControladorSalidaVehiculos implements ActionListener {
             totalHoras = objF.getHs() - objF.getHe();
             totalMinu = objF.getMs() - objF.getMe();
 
-            if (objF.getHs() < objF.getHe() || (objF.getHs() == objF.getHe() && objF.getMs() <= objF.getMe())) {
+            if (objF.getHs() < objF.getHe() || objF.getHs() == objF.getHe() && objF.getMs() <= objF.getMe()) {
                 totalHoras--;
                 totalMinu += 60;
             }
 
+            
+            /*
+            if(objF.getMe() != 0){
+                System.out.println("ENTRE EN GETME");
+                double totalHs = 0;
+                double minE = 1 / objF.getMe();
+                double horasE = objF.getHe(); 
+                double totalHe = horasE + minE;
+                if (objF.getMs() != 0){
+                    double minS = 1 / objF.getMs();
+                    double horasS = objF.getHs();
+                    totalHs = horasS + minS;
+                } else {
+                    double minS = objF.getMs();
+                    double horasS = objF.getHs();
+                    totalHs = horasS + minS;
+                    
+                }
+                objF.setHoras(totalHs - totalHe);
+                System.out.println("horas: "+objF.getHoras());
+            }
+            */
+            
+            
+ 
             // Restar las horas y minutos
-            totalHoras -= objF.getHoras();
-            totalMinu -= objF.getMinutos();
+//            totalHoras -= objF.getHoras();
+//            totalMinu -= objF.getMinutos();
+//
+//            jsf = totalHoras + "." + totalMinu;
+//            rep = Double.parseDouble(jsf);
+            
+
 
             // Si los minutos son negativos, restar 1 hora y sumar 60 minutos
             if (totalMinu < 0) {
@@ -75,10 +107,21 @@ public class ControladorSalidaVehiculos implements ActionListener {
             }
 
             // Almacenar la diferencia de horas y minutos en un objeto
+            
             objF.setHoras(totalHoras);
             objF.setMinutos(totalMinu);
 
             consFac.update2(objF, placa);
+            
+            double horas = (horaSalida - objF.getHe()) + (minutosSalida - objF.getMe()) / 60.0;
+            DecimalFormat formato = new DecimalFormat("#.##");
+
+            double truncado = Double.parseDouble(formato.format(horas).replace(",", "."));
+            System.out.println("Entro al formato: "+truncado);
+            objF.setTotal(truncado * objF.getValorHoras());
+            
+            
+            
 
             boolean formatoPlaca = false;
             boolean placaAsignada = false;
@@ -126,19 +169,23 @@ public class ControladorSalidaVehiculos implements ActionListener {
                 valSal.minEntradaText.setText(objF.getMe() + "");
                 valSal.horaSalidaText.setText(objF.getHs() + "");
                 valSal.minSalidaText.setText(objF.getMs() + "");
-
+                System.out.println("total horasxd: " + totalHoras);
+               
                 /*
                 objF.getTotal() + ""
                  */
-                double valorHoras = objF.getValorHoras();
-                int horas = objF.getHoras();
-                objF.setTotal(horas * valorHoras);
-                System.out.println(objF.getTotal());
-                System.out.println(horas * valorHoras);
-
-                valSal.horasText.setText(horas * valorHoras + "");
+//                double valorHoras = objF.getValorHoras();
+//                double horas = objF.getHoras();
+//                objF.setTotal(horas * valorHoras);
+//                System.out.println(objF.getTotal());
+//                System.out.println(horas * valorHoras);
+//
+//                valSal.horasText.setText(horas * valorHoras + "");
                 System.out.println(objF.getHoras());
-                valSal.totalPagarText.setText(objF.getHoras() + ":" + objF.getMinutos() + "");
+                valSal.horasText.setText(objF.getTotal()+"");
+                //valSal.totalPagarText.setText(objF.getHoras() + ":" + objF.getMinutos());
+                String muu = objF.getHoras() + ":" + objF.getMinutos()+"";
+                valSal.totalPagarText.setText(muu);
                 valSal.valorHoraText.setText(objF.getValorHoras() + "");
 
                 DetalleSalida();
