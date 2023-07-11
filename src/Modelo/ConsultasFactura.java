@@ -43,6 +43,26 @@ public class ConsultasFactura extends Conexion{
         }
     }
 
+    public double sumTotal() {
+        double retorno = 0;
+        try {
+            connect();
+            String sql = "SELECT SUM(Total) AS suma_total FROM factura";
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            if (resultSet.next()) {
+                retorno = resultSet.getDouble("suma_total");
+            }
+            resultSet.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "error" + e);
+        } finally {
+            // Cierra la conexión y los recursos
+            disconnect();
+        }
+        return retorno;
+    }
+
     public ArrayList<ObjetoFactura> findAll(){
 
         ArrayList<ObjetoFactura> results = new ArrayList<>();
@@ -62,10 +82,11 @@ public class ConsultasFactura extends Conexion{
                 ingreso.setMe(resultSet.getInt("minuto_entrada"));
                 ingreso.setCodigo(resultSet.getInt("codigo"));
                 ingreso.setCodigio_factura(resultSet.getInt("codigo_factura"));
-                ingreso.setHe(resultSet.getInt("Hora_Salida"));
-                ingreso.setMe(resultSet.getInt("minuto_salida"));
+                ingreso.setHs(resultSet.getInt("Hora_Salida"));
+                ingreso.setMs(resultSet.getInt("minuto_salida"));
                 ingreso.setHoras(resultSet.getInt("horas"));
                 ingreso.setTotal(resultSet.getDouble("Total"));
+                ingreso.setValorHoras(resultSet.getDouble("Valor_Hora"));
                 results.add(ingreso);
             }
             resultSet.close();
@@ -134,7 +155,6 @@ public class ConsultasFactura extends Conexion{
     }
 
     public void updateByPlaca(ObjetoFactura obj, String placa){
-
 
         try
         {

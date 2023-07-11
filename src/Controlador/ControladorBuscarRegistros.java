@@ -56,12 +56,15 @@ public class ControladorBuscarRegistros implements ActionListener {
                 System.out.println("entre 0");
                 cleanTable();
                 obj = modelo.findByPlate2(vista.testSearch.getText());
+                vista.totalText.setText(obj.getTotal()+"");
                 tableSearcher(obj);
 
             } else if (vista.nivelesUsuarios.getSelectedIndex() == 1){
                 System.out.println("entre 1");
                 cleanTable();
                 obj = modelo.findByCode(Integer.parseInt(vista.testSearch.getText()));
+                vista.totalText.setText(modelo.sumTotal()+"");
+                vista.totalText.setText(obj.getTotal()+"");
                 tableSearcher(obj);
 
             } else if (vista.nivelesUsuarios.getSelectedIndex() == 2){
@@ -78,7 +81,9 @@ public class ControladorBuscarRegistros implements ActionListener {
                     us = modeloUs.find(objS.get(i).getCodigo());
                     filaPlate[3] = us.getNombre();
                     filaPlate[4] = objS.get(i).getHe() + ":" + obj.getMe();
+                    System.out.println(objS.get(i).getHe() + ":" + obj.getMe());
                     filaPlate[5] = objS.get(i).getHs() + ":" + obj.getMs();
+                    System.out.println(objS.get(i).getHs() + ":" + obj.getMs());
                     filaPlate[6] = objS.get(i).getHoras();
                     filaPlate[7] = objS.get(i).getValorHoras();
                     filaPlate[8] = objS.get(i).getTotal();
@@ -86,6 +91,7 @@ public class ControladorBuscarRegistros implements ActionListener {
                     //filaPlate[10] = "check box";
                     vista.modelo.addRow(filaPlate);
                 }
+                vista.totalText.setText(modelo.sumTotal()+"");
             } else {
                 JOptionPane.showMessageDialog(null, "busqueda aun no habil");
             }

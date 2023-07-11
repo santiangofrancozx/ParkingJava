@@ -39,7 +39,7 @@ public class BuscarRegistros extends JDialog {
 
         testSearch = new JTextField(20);
         testSearch.setBounds(300, 30, 100, 30);
-        
+
         //tablaUsuarios.setBounds(50, 100, 600, 150);
 
         nivelesUsuarios = new JComboBox<>(niveles);

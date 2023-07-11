@@ -54,6 +54,7 @@ public class Main{
         ControladorSalidaVehiculos consalVh = new ControladorSalidaVehiculos(salVh, valSal);
         ControladorBuscarRegistros conHyts = new ControladorBuscarRegistros(buscRe);
         ControladorValidarSalida conVsh = new ControladorValidarSalida(valSal);
+        ControladorModificarRegistros comtre = new ControladorModificarRegistros(modRe);
         //ControladorDetallaIngreso conDing = new ControladorDetallaIngreso();
 
 

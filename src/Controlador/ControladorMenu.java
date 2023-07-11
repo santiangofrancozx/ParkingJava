@@ -82,6 +82,7 @@ public class ControladorMenu implements ActionListener{
         this.menu.modificarRe.addActionListener(this);
         this.menu.buscarF.addActionListener(this);
         this.menu.valorHora.addActionListener(this);
+        this.menu.logout.addActionListener(this);
 
     }
 
@@ -101,6 +102,9 @@ public class ControladorMenu implements ActionListener{
         }
         if(e.getSource() == menu.login1){
             inicioLogin();
+        }
+        if (e.getSource() == menu.logout){
+            logOut();
         }
         if (e.getSource() == menu.verU){
             inicioEliminarVisualizar();
@@ -188,7 +192,7 @@ public class ControladorMenu implements ActionListener{
     }
 
     public void modificarRegistros(){
-        modRe.setSize(700,370);
+        modRe.setSize(750,400);
         modRe.setLayout(null);
         modRe.setLocationRelativeTo(null);
         modRe.setResizable(false);
@@ -209,5 +213,12 @@ public class ControladorMenu implements ActionListener{
         hourV.setLocationRelativeTo(null);
         hourV.setResizable(false);
         hourV.setVisible(true);
+    }
+    public  void logOut(){
+        System.out.println("Cerrar sesion");
+        menu.bd.setEnabled(false);
+        menu.vehiculo.setEnabled(false);
+        menu.usuario.setEnabled(false);
+        menu.setVisible(true);
     }
 }
