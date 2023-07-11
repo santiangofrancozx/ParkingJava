@@ -1,6 +1,7 @@
 package Controlador;
 
 import Modelo.ConsultasFactura;
+import Modelo.ConsultasIngresoVehiculos;
 import Modelo.ConsultasUsuarios;
 import Modelo.ObjetoFactura;
 import Vista.Vehicles.ValidarSalida;
@@ -12,6 +13,7 @@ public class ControladorValidarSalida implements ActionListener {
     ValidarSalida vista;
     ConsultasFactura modelo =new ConsultasFactura();
     ConsultasUsuarios modelu = new ConsultasUsuarios();
+    ConsultasIngresoVehiculos consuIng = new ConsultasIngresoVehiculos();
     ObjetoFactura obj = new ObjetoFactura();
 
 
@@ -37,9 +39,14 @@ public class ControladorValidarSalida implements ActionListener {
             obj.setHs(Integer.parseInt(vista.horaSalidaText.getText()));
             obj.setMs(Integer.parseInt(vista.minSalidaText.getText()));
             obj.setValorHoras(Double.parseDouble(vista.valorHoraText.getText()));
-            obj.setHoras(Integer.parseInt(vista.totalPagarText.getText()));
+            vista.totalPagarText.getText().split(":");
+            String[] tarifasString = vista.totalPagarText.getText().split(":");
+            int horas = Integer.parseInt(tarifasString[0]);
+            obj.setHoras(horas);
             obj.setTotal(Double.parseDouble(vista.horasText.getText()));
             modelo.updateByPlaca(obj, obj.getPlaca());
+            consuIng.deleteByPlate(obj.getPlaca());
+
             vista.dispose();
         }
 

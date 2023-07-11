@@ -36,6 +36,18 @@ public class COntroladorIngresoVehiculo implements ActionListener {
         return M;
     }
 
+    public boolean plateExists(String plate){
+        boolean ret = false;
+        ArrayList<ObjetoIngreso>  objArr = new ArrayList<>();
+        objArr = ingC.findAll();
+        for (int i = 0; i < objArr.size(); i++){
+            if (plate.equals(objArr.get(i).getPlaca())){
+                ret = true;
+            } else ret = false;
+        }
+        return ret;
+    }
+
 
 
     public COntroladorIngresoVehiculo(IngresoVehiculo vista){
@@ -67,12 +79,22 @@ public class COntroladorIngresoVehiculo implements ActionListener {
             boolean formatoPlaca = false;
             if (tVehiculo.equals("c") || tVehiculo.equals("C")) {
                 if(Integer.parseInt(puesto) > 0 && Integer.parseInt(puesto) <= 10){
-                    formatoPlaca = placa.matches("[A-Za-z]{3}\\d{3}");
+                    if (plateExists(placa)){
+                        JOptionPane.showMessageDialog(null, "La placa ya existe");
+                        formatoPlaca = false;
+                    } else {
+                        formatoPlaca = placa.matches("[A-Za-z]{3}\\d{3}");
+                    }
                 }
 
             } else if (tVehiculo.equals("m")|| tVehiculo.equals("M")) {
                 if(Integer.parseInt(puesto) > 10 && Integer.parseInt(puesto) <= 20){
-                    formatoPlaca = placa.matches("[A-Za-z]{3}\\d{2}[A-Za-z]");
+                    for (int i = 0; i <ingC.findAll().size(); i++){
+                        if(placa != ingC.findAll().get(i).getPlaca()){
+                            formatoPlaca = placa.matches("[A-Za-z]{3}\\d{2}[A-Za-z]");
+                            System.out.println("placa disponible");
+                        }
+                    }
                 }
 
             } else if (tVehiculo.equals("b") || tVehiculo.equals("B")) {

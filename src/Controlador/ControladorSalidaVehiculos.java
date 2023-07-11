@@ -40,7 +40,7 @@ public class ControladorSalidaVehiculos implements ActionListener {
     }
 
     public void ValidarFormato() {
-        int totalHoras,  totalMinu;
+        int totalHoras, totalMinu;
 
         System.out.println("entro");
         String[] bloques = salidave.formatoIngresar.getText().split("-");
@@ -56,26 +56,27 @@ public class ControladorSalidaVehiculos implements ActionListener {
             objF.setHs(horaSalida);
             objF.setMs(minutosSalida);
 
+            totalHoras = objF.getHs() - objF.getHe();
+            totalMinu = objF.getMs() - objF.getMe();
 
-
-            if (objF.getHs() > objF.getHe()) {
-                System.out.println("cumple horas");
-                if (objF.getMs() >= objF.getMe()) {
-                    objF.setHoras(objF.getHs() - objF.getHe());
-                    totalMinu = objF.getMs() - objF.getMe();
-                    System.out.println("cumple");
-                    System.out.println(objF.getHoras());
-
-                } else {
-                    totalHoras = objF.getHs() - objF.getMs() - 1;
-                    totalMinu = 60 - objF.getMs() - objF.getMe();
-
-                }
-
-                //objF.setHoras(totalHoras);
-                objF.setMinutos(totalMinu);
-
+            if (objF.getHs() < objF.getHe() || (objF.getHs() == objF.getHe() && objF.getMs() <= objF.getMe())) {
+                totalHoras--;
+                totalMinu += 60;
             }
+
+            // Restar las horas y minutos
+            totalHoras -= objF.getHoras();
+            totalMinu -= objF.getMinutos();
+
+            // Si los minutos son negativos, restar 1 hora y sumar 60 minutos
+            if (totalMinu < 0) {
+                totalHoras--;
+                totalMinu += 60;
+            }
+
+            // Almacenar la diferencia de horas y minutos en un objeto
+            objF.setHoras(totalHoras);
+            objF.setMinutos(totalMinu);
 
             consFac.update2(objF, placa);
 
@@ -128,21 +129,20 @@ public class ControladorSalidaVehiculos implements ActionListener {
 
                 /*
                 objF.getTotal() + ""
-                */
+                 */
                 double valorHoras = objF.getValorHoras();
                 int horas = objF.getHoras();
-                objF.setTotal(horas*valorHoras);
+                objF.setTotal(horas * valorHoras);
                 System.out.println(objF.getTotal());
-                System.out.println(horas*valorHoras);
+                System.out.println(horas * valorHoras);
 
-                valSal.horasText.setText(horas*valorHoras+"");
+                valSal.horasText.setText(horas * valorHoras + "");
                 System.out.println(objF.getHoras());
-                valSal.totalPagarText.setText(objF.getHoras() + "");
+                valSal.totalPagarText.setText(objF.getHoras() + ":" + objF.getMinutos() + "");
                 valSal.valorHoraText.setText(objF.getValorHoras() + "");
 
                 DetalleSalida();
                 System.out.println("melo");
-
 
             } else {
                 JOptionPane.showMessageDialog(null, "formato incorrecto");

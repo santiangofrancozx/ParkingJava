@@ -4,6 +4,7 @@ package Controlador;
 import Modelo.*;
 import Vista.Vehicles.hourValue;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -41,7 +42,8 @@ public class ControladorTarifas implements ActionListener {
                 fact.update(modelo, "b");
                 //consuIngreso.update(modelo);
 
-            }
+            } else
+                JOptionPane.showMessageDialog(null, "no es un numero");
 
             if(esConvertibleADouble(vista.caja_hCarro.getText())){
                 modelo.setTipo("c");
@@ -49,7 +51,8 @@ public class ControladorTarifas implements ActionListener {
                 consu.update(modelo);
                 fact.update(modelo, "c");
                 //consuIngreso.update(modelo);
-            }
+            } else
+                JOptionPane.showMessageDialog(null, "no es un numero");
 
             if(esConvertibleADouble(vista.caja_hMoto.getText())){
                 modelo.setTipo("m");
@@ -57,7 +60,8 @@ public class ControladorTarifas implements ActionListener {
                 consu.update(modelo);
                 fact.update(modelo, "m");
                 //consuIngreso.update(modelo);
-            }
+            } else
+                JOptionPane.showMessageDialog(null, "no es un numero");
 
             vista.caja_hMoto.setText("");
             vista.caja_hCarro.setText("");

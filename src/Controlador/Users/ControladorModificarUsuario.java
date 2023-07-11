@@ -29,17 +29,31 @@ public class ControladorModificarUsuario implements ActionListener {
         this.vista.jbCancelar.addActionListener(this);
     }
 
+    public boolean validateInteger(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
         Usuario us = new Usuario();
         if (e.getSource() == vista.jbBuscar){
             ConsultasUsuarios search = new ConsultasUsuarios();
-            us = search.find(Integer.parseInt(vista.caja_codigoB.getText()));
-            vista.caja_name.setText(us.getNombre());
-            vista.caja_correo.setText(us.getCorreo());
-            vista.caja_password.setText(us.getContraseña());
-            vista.combo.setSelectedIndex(us.getNivel());
-            JOptionPane.showMessageDialog(null, us.getNombre());
+            if (validateInteger(vista.caja_codigoB.getText())){
+                us = search.find(Integer.parseInt(vista.caja_codigoB.getText()));
+                vista.caja_name.setText(us.getNombre());
+                vista.caja_correo.setText(us.getCorreo());
+                vista.caja_password.setText(us.getContraseña());
+                vista.combo.setSelectedIndex(us.getNivel());
+                JOptionPane.showMessageDialog(null, us.getNombre());
+            } else {
+                JOptionPane.showMessageDialog(null, "Codigo no es entero");
+            }
         }
         if (e.getSource() == vista.jbModificar){
             ConsultasUsuarios update = new ConsultasUsuarios();

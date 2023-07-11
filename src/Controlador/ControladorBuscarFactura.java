@@ -6,6 +6,7 @@ import Modelo.ObjetoFactura;
 import Modelo.Usuario;
 import Vista.Vehicles.BuscarFactura;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -33,7 +34,7 @@ public class ControladorBuscarFactura implements ActionListener {
         if(e.getSource() == vista.buscar){
             System.out.println("entre en buscar");
             int codeFactura;
-            if (esConvertibleADouble(vista.NoFacturaText.getText())){
+            if (validateInteger(vista.NoFacturaText.getText())){
                 codeFactura = Integer.parseInt(vista.NoFacturaText.getText());
                 ObjetoFactura objFac = modelo.findByCode(codeFactura);
                 vista.vehiculoText.setText(objFac.getTipo());
@@ -47,13 +48,14 @@ public class ControladorBuscarFactura implements ActionListener {
                 vista.valorHoraText.setText(objFac.getValorHoras()+"");
                 vista.horasText.setText(objFac.getHoras()+"");
                 vista.totalPagarText.setText(objFac.getTotal()+"");
-            }
+            } else
+                JOptionPane.showMessageDialog(null, "codigo debe ser numero");
         }
     }
 
-    public boolean esConvertibleADouble(String valor) {
+    public boolean validateInteger(String str) {
         try {
-            Double.parseDouble(valor);
+            Integer.parseInt(str);
             return true;
         } catch (NumberFormatException e) {
             return false;

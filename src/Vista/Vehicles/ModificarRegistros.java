@@ -82,12 +82,12 @@ public class ModificarRegistros extends JDialog {
             }
 
             public boolean isCellEditable(int row, int column) {
-                return column == 10;
+                if (column > 0 && column <= 10){
+                    return true;
+                } else  return false;
 
             }
         };
-
-
 
         //tablaUsuarios.setEditingRow(1);
 

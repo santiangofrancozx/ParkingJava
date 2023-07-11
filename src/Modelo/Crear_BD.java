@@ -76,7 +76,7 @@ public class Crear_BD extends Conexion{
 
             //ingreso
             con.setCatalog(nombreData); // Seleccionar la base de datos recién creada
-            String sql4 = "CREATE TABLE ingreso (placa VARCHAR (50) PRIMARY KEY, tipo VARCHAR(50), puesto INT, Hora_Entrada INT, Minuto_Entrada INT, codigo INT," +
+            String sql4 = "CREATE TABLE ingreso (placa VARCHAR (50), tipo VARCHAR(50), puesto INT PRIMARY KEY, Hora_Entrada INT, Minuto_Entrada INT, codigo INT," +
                             "FOREIGN KEY (codigo) REFERENCES usuarios(codigo)," +
                             "FOREIGN KEY (tipo) REFERENCES tarifas(tipo) ON DELETE CASCADE ON UPDATE CASCADE)";
             preparedStatement = con.prepareStatement(sql4);
@@ -85,10 +85,10 @@ public class Crear_BD extends Conexion{
 
             //factura
             con.setCatalog(nombreData); // Seleccionar la base de datos recién creada
-            String sql5 = "CREATE TABLE factura (codigo_factura INT PRIMARY KEY AUTO_INCREMENT not null, tipo CHAR, placa VARCHAR (50), codigo INT, Hora_Entrada INT, minuto_entrada INT, Hora_Salida INT, minuto_salida INT, horas INT, Valor_Hora INT, Total INT,\n" +
+            String sql5 = "CREATE TABLE factura (codigo_factura INT PRIMARY KEY AUTO_INCREMENT not null, tipo VARCHAR(50), placa VARCHAR (50), codigo INT, Hora_Entrada INT, minuto_entrada INT, Hora_Salida INT, minuto_salida INT, horas INT, Valor_Hora INT, Total INT, puesto INT,\n" +
                     "FOREIGN KEY (tipo) REFERENCES tarifas(tipo) ON DELETE CASCADE ON UPDATE CASCADE," +
                     "FOREIGN KEY (codigo) REFERENCES usuarios(codigo) ON DELETE CASCADE ON UPDATE CASCADE," +
-                    "FOREIGN KEY (placa)  REFERENCES ingreso(placa) ON DELETE CASCADE ON UPDATE CASCADE)";
+                    "FOREIGN KEY (puesto)  REFERENCES ingreso(puesto) ON DELETE CASCADE ON UPDATE CASCADE)";
             preparedStatement = con.prepareStatement(sql5);
             preparedStatement.executeUpdate();
             preparedStatement.close();

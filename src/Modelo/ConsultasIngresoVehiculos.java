@@ -188,12 +188,25 @@ public class ConsultasIngresoVehiculos extends Conexion {
     }
 
 
-
-
-
-
-
-
+    public void deleteByPlate(String placa) {
+        try {
+            connect();
+            String sql = "DELETE FROM ingreso WHERE placa = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, placa);
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(null, "Se eliminaron " + rowsAffected + " registros con la placa: " + placa);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontraron registros con la placa: " + placa);
+            }
+            preparedStatement.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al eliminar registros: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            disconnect();
+        }
+    }
 
 
     public void update(ObjetoTarifas obj){
