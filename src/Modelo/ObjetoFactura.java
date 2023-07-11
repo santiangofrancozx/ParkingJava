@@ -2,7 +2,33 @@ package Modelo;
 
 public class ObjetoFactura {
 
-    int codigio_factura, codigo, he, me, hs, ms, horas;
+    int codigio_factura;
+    int codigo;
+    int he;
+    int me;
+    int hs;
+    int ms;
+    int horas;
+
+    public String getNameCliente() {
+        return nameCliente;
+    }
+
+    public void setNameCliente(String nameCliente) {
+        this.nameCliente = nameCliente;
+    }
+
+    String nameCliente;
+
+    public int getMinutos() {
+        return minutos;
+    }
+
+    public void setMinutos(int minutos) {
+        this.minutos = minutos;
+    }
+
+    int minutos;
     Double valorHoras, total;
 
     public int getCodigio_factura() {

@@ -43,6 +43,7 @@ public class Main{
         ValidarSalida valSal = new ValidarSalida(null, true);
 
 
+
         ControladorBuscarFactura bDhc = new ControladorBuscarFactura(buscF);
         ControladorTarifas coTf = new ControladorTarifas(hourV);
         ControladorVizualizarEliminar cVe = new ControladorVizualizarEliminar(vistaEliminar, cosun);
@@ -51,6 +52,8 @@ public class Main{
         ControladorDB cDB = new ControladorDB(modelo, crearDB, createDB);
         ConsultasIngresoVehiculos consulIvh = new ConsultasIngresoVehiculos();
         ControladorSalidaVehiculos consalVh = new ControladorSalidaVehiculos(salVh, valSal);
+        ControladorBuscarRegistros conHyts = new ControladorBuscarRegistros(buscRe);
+        ControladorValidarSalida conVsh = new ControladorValidarSalida(valSal);
         //ControladorDetallaIngreso conDing = new ControladorDetallaIngreso();
 
 
