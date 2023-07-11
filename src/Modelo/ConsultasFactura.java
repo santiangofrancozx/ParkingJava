@@ -59,13 +59,14 @@ public class ConsultasFactura extends Conexion{
                 ingreso.setPlaca(resultSet.getString("placa"));
                 ingreso.setTipo(resultSet.getString("tipo"));
                 ingreso.setHe(resultSet.getInt("Hora_Entrada"));
-                ingreso.setMe(resultSet.getInt("inuto_entrada"));
+                ingreso.setMe(resultSet.getInt("minuto_entrada"));
                 ingreso.setCodigo(resultSet.getInt("codigo"));
                 ingreso.setCodigio_factura(resultSet.getInt("codigo_factura"));
                 ingreso.setHe(resultSet.getInt("Hora_Salida"));
                 ingreso.setMe(resultSet.getInt("minuto_salida"));
                 ingreso.setHoras(resultSet.getInt("horas"));
                 ingreso.setTotal(resultSet.getDouble("Total"));
+                results.add(ingreso);
             }
             resultSet.close();
 
@@ -132,6 +133,48 @@ public class ConsultasFactura extends Conexion{
 
     }
 
+    public void updateByPlaca(ObjetoFactura obj, String placa){
+
+
+        try
+        {
+            connect();
+            String sql = "UPDATE factura\n" +
+                    "SET tipo = ?,\n" +
+                    "    Hora_Entrada = ?,\n" +
+                    "    minuto_entrada = ?,\n" +
+                    "    Hora_Salida = ?,\n" +
+                    "    minuto_salida = ?,\n" +
+                    "    horas = ?,\n" +
+                    "    Valor_Hora = ?,\n" +
+                    "    Total = ?\n" +
+                    "WHERE placa = ?;\n";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, obj.getTipo());
+            //preparedStatement.setInt(1, obj.getCodigo());//empleado
+            preparedStatement.setInt(2, obj.getHe());
+            preparedStatement.setInt(3, obj.getMe());
+            preparedStatement.setInt(4, obj.getHs());
+            preparedStatement.setInt(5, obj.getMe());
+            preparedStatement.setInt(6, obj.getHoras());
+            System.out.println("------------\n");
+            System.out.println(obj.getValorHoras());
+            System.out.println("------------\n");
+            preparedStatement.setDouble(7, obj.getValorHoras());
+            preparedStatement.setDouble(8, obj.getTotal());
+            preparedStatement.setString(9, obj.getPlaca());
+            preparedStatement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se actualizo la factura:\n");
+            preparedStatement.close();
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, "Error al actualizar factura " + e.getMessage(), "Error",JOptionPane.ERROR_MESSAGE);
+        } finally {
+            disconnect();
+        }
+
+    }
+
     public ObjetoFactura findByPlate2(String placa){
 
         ObjetoFactura results = new ObjetoFactura();
@@ -148,9 +191,10 @@ public class ConsultasFactura extends Conexion{
             while(resultSet.next()){
                 ObjetoFactura ingreso = new ObjetoFactura();
 
-                ingreso.setCodigo(resultSet.getInt("codigo"));
+                ingreso.setCodigio_factura(resultSet.getInt("codigo_factura"));
                 ingreso.setTipo(resultSet.getString("tipo"));
                 ingreso.setPlaca(resultSet.getString("placa"));
+                ingreso.setCodigo(resultSet.getInt("codigo"));
                 ingreso.setHe(resultSet.getInt("Hora_Entrada"));
                 ingreso.setMe(resultSet.getInt("minuto_entrada"));
                 System.out.println("error de consulfact");
