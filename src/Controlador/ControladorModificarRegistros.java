@@ -149,8 +149,8 @@ public class ControladorModificarRegistros implements ActionListener {
                     // Verificar formato de placa
                     if (placa.matches("[A-Za-z]{3}[0-9]{3}") || placa.matches("[A-Za-z]{3}[0-9]{3}[A-Za-z]{1}") || placa.equals("0000")) {
                         // Verificar tipo y placa
-                        if ((tipo.equals("b") && placa.equals("0000")) || (tipo.equals("c") && placa.matches("[A-Za-z]{3}[0-9]{3}")) || (tipo.equals("m") && placa.matches("[A-Za-z]{3}[0-9]{1}[A-Za-z]{1}"))) {
-                            // Verificar formato de hora
+                        if ((tipo.equals("b") || (tipo.equals("B"))&& placa.equals("0000")) || (tipo.equals("c") || (tipo.equals("C")) && placa.matches("[A-Za-z]{3}[0-9]{3}")) || (tipo.equals("m")  || tipo.equals("M") && placa.matches("[A-Za-z]{3}[0-9]{1}[A-Za-z]{1}"))) {
+                            // Verificar formato de hora 
                             if (horaEntrada.matches("([01]?[0-9]|2[0-3]):[0-5][0-9]") && horaSalida.matches("([01]?[0-9]|2[0-3]):[0-5][0-9]")) {
                                 // Verificar horaSalida mayor que horaEntrada
                                 if (horaSalida.compareTo(horaEntrada) > 0) {
